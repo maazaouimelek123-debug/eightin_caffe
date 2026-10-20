@@ -21,7 +21,7 @@ assets/css/style.css    Styles + palette (variables CSS dans :root)
 assets/js/menu-data.js  ← LE fichier à modifier pour les prix et les boissons
 assets/js/main.js       Rendu du menu, panier, ticket « commande à la caisse »
 assets/fonts/           Polices auto-hébergées (woff2)
-assets/img/             Motifs SVG, photo de l'enseigne, favicons, image de partage
+assets/img/             Logo SVG, motifs SVG, photo de l'enseigne, favicons, image de partage
 vercel.json             En-têtes de sécurité (CSP stricte) pour un déploiement Vercel
 ```
 
@@ -44,9 +44,11 @@ Le nombre de boissons affiché dans « À propos » et les « dès X DT » sont 
 | Bleu ciel | `#C9E9F5` | Posts « Find us here », coups de pinceau |
 | Menthe | `#EAFBF4` | Fond de l'avatar et des stories à la une |
 
+**Logo** : `assets/img/logo-eightin.svg`, vectorisé depuis le post Instagram « Find us here ». Sa couleur est pilotée en CSS via `mask` (classe `.logo-mark`), avec la même mention « FLOUR & COFFEE » empilée que sur l'avatar Instagram.
+
 | Typo | Usage | Pourquoi |
 |---|---|---|
-| Yellowtail | Logo, titres | Script la plus proche du logo (comparée à 12 autres) |
+| Yellowtail | Titres de sections et de catégories | Script la plus proche du logo (comparée à 12 autres) |
 | Bebas Neue | Slogans (« BUT FIRST, COFFEE. ») | Même condensé gras que les posts |
 | Patrick Hand | Noms des boissons, accents manuscrits | Proche de l'écriture des posts et des panneaux menu ; gère les accents français |
 | Josefin Sans | Texte courant, libellés | Capitales espacées type « FLOUR AND COFFEE » |

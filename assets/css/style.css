@@ -97,11 +97,20 @@ button { font: inherit; color: inherit; }
   display: inline-flex; align-items: center; gap: 0.45rem;
   text-decoration: none; color: var(--mint);
 }
-.nav-logo-word, .footer-logo-word { font-family: var(--font-script); font-size: 2.1rem; line-height: 1; padding-top: 0.15rem; }
+/* Logo officiel (vectorisé depuis l'Instagram) : la couleur suit `color` */
+.logo-mark {
+  display: block;
+  aspect-ratio: 2288.5 / 1031;
+  background: currentColor;
+  -webkit-mask: url('../img/logo-eightin.svg') center / contain no-repeat;
+  mask: url('../img/logo-eightin.svg') center / contain no-repeat;
+}
+.nav-logo-mark { height: 40px; }
 .nav-logo-tag, .footer-logo-tag {
-  font-size: 0.5rem; font-weight: 700; line-height: 1.15;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  align-self: flex-end; padding-bottom: 0.35rem;
+  font-family: var(--font-display);
+  font-size: 0.78rem; line-height: 0.95;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  align-self: flex-end; padding-bottom: 0.1rem;
 }
 
 .nav-links { grid-column: 3; justify-self: end; display: flex; gap: 2rem; list-style: none; }
@@ -155,25 +164,22 @@ button { font: inherit; color: inherit; }
 }
 .hero-badge svg { width: 14px; height: 14px; margin-top: -0.15rem; }
 
+/* Disposition du logo Instagram : "FLOUR / & COFFEE" empilé sous "in" */
 .lockup {
-  display: inline-flex; align-items: flex-end; gap: 0.25em;
+  --logo-w: clamp(260px, 46vw, 540px);
+  position: relative;
+  width: var(--logo-w);
+  margin: 0 auto 1.8rem;
   font-weight: 400;
-  margin-bottom: 1.2rem;
 }
-.lockup-word {
-  font-family: var(--font-script);
-  font-size: clamp(4.6rem, 15vw, 10rem);
-  line-height: 0.9;
-  color: var(--mint);
-  padding: 0.12em 0.1em 0 0;
-}
+.lockup-mark { width: 100%; }
 .lockup-tag {
-  font-family: var(--font-body);
-  font-size: clamp(0.85rem, 2.2vw, 1.35rem);
-  font-weight: 700; line-height: 1.15;
-  letter-spacing: 0.06em; text-transform: uppercase;
+  position: absolute; left: 70%; bottom: calc(var(--logo-w) * -0.012);
+  font-family: var(--font-display);
+  font-size: calc(var(--logo-w) * 0.066);
+  line-height: 1;
+  letter-spacing: 0.03em; text-transform: uppercase;
   text-align: left;
-  padding-bottom: 0.6em;
 }
 
 .hero-tagline {
@@ -547,7 +553,8 @@ button { font: inherit; color: inherit; }
 .footer-strokes { opacity: 0.08; }
 .footer > *:not(.footer-strokes) { position: relative; }
 .footer-logo { margin-bottom: 0.8rem; }
-.footer-logo-word { font-size: 2.8rem; }
+.footer-logo-mark { height: 62px; }
+.footer-logo-tag { font-size: 0.95rem; }
 .footer p { font-size: 0.8rem; letter-spacing: 0.06em; }
 .footer-insta {
   display: inline-flex; align-items: center; gap: 0.5rem;
@@ -685,7 +692,7 @@ button { font: inherit; color: inherit; }
   color: var(--navy);
 }
 .ticket-head { text-align: center; padding-bottom: 1.1rem; border-bottom: 2px dashed var(--line); }
-.ticket-logo { font-family: var(--font-script); font-size: 3rem; line-height: 1; }
+.ticket-logo { height: 62px; margin: 0 auto; }
 .ticket-sign {
   display: inline-block;
   margin-top: 0.7rem;
@@ -723,7 +730,7 @@ button { font: inherit; color: inherit; }
   }
   .nav-place { display: none; }
   .nav-logo { grid-column: 1; justify-self: start; }
-  .nav-logo-word { font-size: 1.85rem; }
+  .nav-logo-mark { height: 36px; }
   .hamburger { display: flex; }
   .nav-links { display: none; }
   .nav-links.open {

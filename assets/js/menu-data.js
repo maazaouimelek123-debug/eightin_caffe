@@ -8,8 +8,8 @@
 window.EIGHTIN = {
   SITE: {
     instagram: 'eightincoffee',
-    // Recherche Google Maps : à remplacer par le lien « Partager » de la fiche Google Maps officielle.
-    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Eight%27In+Flour+and+Coffee+Boumhal',
+    // Lien de la fiche Google Maps (lien en bio Instagram, sans paramètres de suivi).
+    mapsUrl: 'https://maps.app.goo.gl/udovAyAhgXNVn44n8',
   },
 
   // Thèmes de carte : 'navy' | 'sky' | 'mint' (couleurs Instagram).
