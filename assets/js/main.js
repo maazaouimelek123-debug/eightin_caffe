@@ -174,14 +174,13 @@
   const fmt = p => (Number.isInteger(p) ? String(p) : p.toFixed(3)) + ' DT';
 
   /* ---------- Index des articles : "categorie/article" → infos ---------- */
-  const kindOf = id => (SECTIONS.find(s => s.id === id) || {}).kind;
   const catLabel = cat => cat.label || cat.name;
   const ITEMS = new Map();
   for (const cat of MENU) {
     for (const g of cat.groups) {
       for (const it of g.items) {
         ITEMS.set(`${cat.id}/${it.id}`, {
-          name: it.name, price: it.price, cat: catLabel(cat), theme: cat.theme, icon: cat.icon, kind: kindOf(cat.section),
+          name: it.name, price: it.price, cat: catLabel(cat), theme: cat.theme, icon: cat.icon,
         });
       }
     }
@@ -484,9 +483,6 @@
   loadCart();
   renderCart();
   document.getElementById('maps-link').href = SITE.mapsUrl;
-  const countKind = kind => [...ITEMS.values()].filter(it => it.kind === kind).length;
-  document.getElementById('drink-count').textContent = String(countKind('drink'));
-  document.getElementById('food-count').textContent = String(countKind('food'));
   document.getElementById('year').textContent = String(new Date().getFullYear());
   setupReveal();
 })();

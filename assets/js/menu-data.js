@@ -11,11 +11,11 @@ window.EIGHTIN = {
     mapsUrl: 'https://maps.app.goo.gl/udovAyAhgXNVn44n8',
   },
 
-  // Onglets du menu, dans l'ordre de la carte imprimée. kind : 'drink' | 'food' (compteurs "À propos").
+  // Onglets du menu, dans l'ordre de la carte imprimée.
   SECTIONS: [
-    { id: 'drinks', label: 'Boissons', kind: 'drink' },
-    { id: 'sweet', label: 'Sweet & Brunch', kind: 'food' },
-    { id: 'savory', label: 'Savory', kind: 'food' },
+    { id: 'drinks', label: 'Boissons' },
+    { id: 'sweet', label: 'Sweet & Brunch' },
+    { id: 'savory', label: 'Savory' },
   ],
 
   // Thèmes de carte : 'navy' | 'sky' | 'mint' (couleurs Instagram).

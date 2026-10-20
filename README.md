@@ -3,7 +3,7 @@
 Site vitrine du café **Eight’In Flour & Coffee** (Boumhal, banlieue sud de Tunis).
 Site statique en HTML/CSS/JS, sans framework, sans build et sans backend.
 
-Une seule page : nav fixe, hero plein écran, sélection, à propos, menu par onglets (Boissons, Sweet & Brunch, Savory) en cartes accordéon, panier, contact, footer.
+Une seule page : nav fixe, hero plein écran, sélection, menu par onglets (Boissons, Sweet & Brunch, Savory) en cartes accordéon, panier, contact, footer.
 L'identité visuelle (couleurs, typographies, motif « coups de pinceau ») est celle de l'Instagram [@eightincoffee](https://www.instagram.com/eightincoffee/) et de l'enseigne en boutique.
 
 ## Aperçu local
@@ -16,12 +16,12 @@ python3 -m http.server 8000
 ## Structure
 
 ```
-index.html              Page unique (sections : hero, sélection, à propos, menu, contact)
+index.html              Page unique (sections : hero, sélection, menu, contact)
 assets/css/style.css    Styles + palette (variables CSS dans :root)
 assets/js/menu-data.js  ← LE fichier à modifier pour les prix et les articles
 assets/js/main.js       Rendu du menu, panier, ticket « commande à la caisse »
 assets/fonts/           Polices auto-hébergées (woff2)
-assets/img/             Logo SVG, motifs SVG, photo de l'enseigne, favicons, image de partage
+assets/img/             Logo SVG, motifs SVG, favicons, image de partage
 vercel.json             En-têtes de sécurité (CSP stricte) pour un déploiement Vercel
 ```
 
@@ -35,7 +35,7 @@ Tout se fait dans `assets/js/menu-data.js` :
 - **Carte sans prix** (ex. Gourmet Corner) : remplacer les articles par un texte `info`.
 - **Section « À découvrir »** : liste `FEATURED`, au format `'categorie/article'`.
 
-Les compteurs (onglets, « À propos ») et les « dès X DT » sont calculés automatiquement.
+Les compteurs des onglets et les « dès X DT » sont calculés automatiquement.
 
 ## Identité visuelle
 
@@ -45,7 +45,7 @@ Les compteurs (onglets, « À propos ») et les « dès X DT » sont calculés a
 | Bleu ciel | `#C9E9F5` | Posts « Find us here », coups de pinceau |
 | Menthe | `#EAFBF4` | Fond de l'avatar et des stories à la une |
 
-**Logo** : `assets/img/logo-eightin.svg`, vectorisé depuis le post Instagram « Find us here ». Sa couleur est pilotée en CSS via `mask` (classe `.logo-mark`), avec la même mention « FLOUR & COFFEE » empilée que sur l'avatar Instagram.
+**Logo** : `assets/img/logo-eightin.svg`, vectorisé depuis le post Instagram « Find us here ». Il est intégré en SVG dans `index.html` (symbole `#eightin-logo`, classe `.logo-mark`) pour rester net à toutes les tailles ; sa couleur suit `color`. Après une modification du fichier, recopier son tracé dans ce symbole, avec la même mention « FLOUR & COFFEE » empilée que sur l'avatar Instagram.
 
 | Typo | Usage | Pourquoi |
 |---|---|---|

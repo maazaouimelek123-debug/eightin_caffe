@@ -97,13 +97,13 @@ button { font: inherit; color: inherit; }
   display: inline-flex; align-items: center; gap: 0.45rem;
   text-decoration: none; color: var(--mint);
 }
-/* Logo officiel (vectorisé depuis l'Instagram) : la couleur suit `color` */
+/* Logo officiel (vectorisé depuis l'Instagram), en SVG inline : net à toutes les tailles, la couleur suit `color` */
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 .logo-mark {
   display: block;
-  aspect-ratio: 2288.5 / 1031;
-  background: currentColor;
-  -webkit-mask: url('../img/logo-eightin.svg') center / contain no-repeat;
-  mask: url('../img/logo-eightin.svg') center / contain no-repeat;
+  aspect-ratio: 2311.3 / 1047.3;
+  fill: currentColor;
+  overflow: visible;
 }
 .nav-logo-mark { height: 40px; }
 .nav-logo-tag, .footer-logo-tag {
@@ -274,7 +274,7 @@ button { font: inherit; color: inherit; }
   margin-bottom: 0.9rem;
 }
 .label::before, .label::after { content: ''; width: 26px; height: 1.5px; background: currentColor; }
-.section-header h2, .about-content h2 {
+.section-header h2 {
   font-family: var(--font-script);
   font-weight: 400;
   font-size: clamp(2.8rem, 7vw, 3.8rem);
@@ -352,37 +352,6 @@ button { font: inherit; color: inherit; }
 .feat-card:hover .feat-add { background: var(--navy); color: var(--mint); }
 .feat-card.added { animation: popAdded 0.35s ease; }
 @keyframes popAdded { 0%, 100% { transform: scale(1); } 50% { transform: scale(0.96); } }
-
-/* ==========================================================================
-   À PROPOS
-   ========================================================================== */
-.about-inner {
-  display: grid; grid-template-columns: 1fr 1.1fr; gap: 5rem; align-items: center;
-  max-width: 1100px; margin: 0 auto;
-}
-.about-img {
-  position: relative;
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  background: var(--navy);
-}
-.about-img img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
-.about-img-badge {
-  position: absolute; left: 1.2rem; top: 1.2rem;
-  background: var(--navy); color: var(--mint);
-  font-size: 0.74rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
-  padding: 0.65rem 1.2rem 0.5rem; border-radius: 999px;
-}
-.about-content .label { margin-bottom: 0.6rem; }
-.about-content .label::before { display: none; }
-.about-hand { font-family: var(--font-hand); font-size: 1.6rem; color: var(--ink-soft); margin: 0.2rem 0 1.4rem; }
-.about-content p:not(.about-hand) { font-size: 0.98rem; line-height: 1.9; color: var(--ink-soft); margin-bottom: 1.1rem; }
-.about-content strong { color: var(--navy); }
-.about-stats { display: flex; gap: 2.4rem; list-style: none; margin-top: 2.2rem; flex-wrap: wrap; }
-.about-stats li { display: flex; flex-direction: column; }
-.stat-num { font-family: var(--font-display); font-size: 2.6rem; line-height: 1; color: var(--navy); }
-.stat-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); }
 
 /* ==========================================================================
    BANDEAU "BUT FIRST, COFFEE."
@@ -749,7 +718,6 @@ button { font: inherit; color: inherit; }
 @media (max-width: 960px) {
   .featured-grid { grid-template-columns: repeat(2, 1fr); }
   .contact-cards { grid-template-columns: repeat(2, 1fr); }
-  .about-inner { gap: 3rem; }
 }
 
 @media (max-width: 768px) {
@@ -799,9 +767,6 @@ button { font: inherit; color: inherit; }
   .feat-name { font-size: 1.25rem; }
   .feat-foot { flex-wrap: wrap; gap: 0.4rem; }
 
-  .about-inner { grid-template-columns: 1fr; }
-  .about-img { max-width: 420px; margin: 0 auto; }
-  .about-stats { gap: 1.6rem; justify-content: space-between; }
 
   .statement { padding: 5rem 1rem; }
   .contact-card { padding: 1.6rem 1.2rem; }
