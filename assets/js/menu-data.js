@@ -1,7 +1,6 @@
 /*
  * Eight'In Flour & Coffee — contenu du menu.
  * C'est le seul fichier à modifier pour changer un prix ou ajouter un article.
- * Prix en dinars tunisiens (DT).
  *
  * Source : panneaux et carte photographiés en boutique + page Instagram @eightincoffee.
  */

@@ -29,7 +29,7 @@ vercel.json             En-têtes de sécurité (CSP stricte) pour un déploieme
 
 Tout se fait dans `assets/js/menu-data.js` :
 
-- **Changer un prix** : modifier `price` (en DT).
+- **Changer un prix** : modifier `price`.
 - **Ajouter un article** : ajouter `{ id: 'mon-id', name: 'Nom', price: 12 }` dans la bonne catégorie (l'`id` doit être unique dans la catégorie). Option : `desc` pour une précision sous le nom, `tag` pour une pastille.
 - **Ajouter une catégorie** : copier un bloc existant, choisir son onglet (`section` : `drinks`, `sweet`, `savory`), un `theme` (`navy`, `sky`, `mint`) et une `icon` (`iced`, `frappe`, `shake`, `smoothie`, `mojito`, `cocktail`, `classic`, `croissant`, `crepe`, `waffle`, `egg`, `burger`, `cookie`).
 - **Carte sans prix** (ex. Gourmet Corner) : remplacer les articles par un texte `info`.
