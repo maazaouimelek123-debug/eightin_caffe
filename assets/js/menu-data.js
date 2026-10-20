@@ -1,6 +1,8 @@
 /*
  * Eight'In Flour & Coffee — contenu du menu.
  * C'est le seul fichier à modifier pour changer un prix ou ajouter un article.
+ * Textes bilingues : un texte peut être une simple chaîne (identique en FR et EN)
+ * ou un objet { fr: '…', en: '…' }.
  *
  * Source : panneaux et carte photographiés en boutique + page Instagram @eightincoffee.
  */
@@ -13,7 +15,7 @@ window.EIGHTIN = {
 
   // Onglets du menu, dans l'ordre de la carte imprimée.
   SECTIONS: [
-    { id: 'drinks', label: 'Boissons' },
+    { id: 'drinks', label: { fr: 'Boissons', en: 'Drinks' } },
     { id: 'sweet', label: 'Sweet & Brunch' },
     { id: 'savory', label: 'Savory' },
   ],
@@ -31,7 +33,7 @@ window.EIGHTIN = {
       name: 'Iced Coffee',
       theme: 'navy',
       icon: 'iced',
-      unit: 'boissons',
+      unit: { fr: 'boissons', en: 'drinks' },
       groups: [
         {
           title: 'Black',
@@ -58,7 +60,7 @@ window.EIGHTIN = {
       name: 'Frappuccino',
       theme: 'sky',
       icon: 'frappe',
-      unit: 'saveurs',
+      unit: { fr: 'saveurs', en: 'flavours' },
       groups: [
         {
           items: [
@@ -78,7 +80,7 @@ window.EIGHTIN = {
       name: 'Milkshake',
       theme: 'mint',
       icon: 'shake',
-      unit: 'saveurs',
+      unit: { fr: 'saveurs', en: 'flavours' },
       groups: [
         {
           items: [
@@ -98,7 +100,7 @@ window.EIGHTIN = {
       name: 'Smoothie',
       theme: 'navy',
       icon: 'smoothie',
-      unit: 'recettes',
+      unit: { fr: 'recettes', en: 'recipes' },
       groups: [
         {
           items: [
@@ -116,8 +118,8 @@ window.EIGHTIN = {
       name: 'Mojito',
       theme: 'sky',
       icon: 'mojito',
-      unit: 'saveurs',
-      note: 'Sans alcool',
+      unit: { fr: 'saveurs', en: 'flavours' },
+      note: { fr: 'Sans alcool', en: 'Alcohol-free' },
       groups: [
         {
           items: [
@@ -137,7 +139,7 @@ window.EIGHTIN = {
       subtitle: 'Blended or shaken',
       theme: 'mint',
       icon: 'cocktail',
-      unit: 'créations',
+      unit: { fr: 'créations', en: 'creations' },
       groups: [
         {
           items: [
@@ -155,7 +157,7 @@ window.EIGHTIN = {
       name: 'Classics',
       theme: 'navy',
       icon: 'classic',
-      unit: 'boissons',
+      unit: { fr: 'boissons', en: 'drinks' },
       groups: [
         {
           items: [
@@ -178,17 +180,17 @@ window.EIGHTIN = {
       id: 'crepes-sucrees',
       section: 'sweet',
       name: 'Crêpes',
-      subtitle: 'Sucrées',
-      label: 'Crêpes sucrées',
+      subtitle: { fr: 'Sucrées', en: 'Sweet' },
+      label: { fr: 'Crêpes sucrées', en: 'Sweet crêpes' },
       theme: 'navy',
       icon: 'crepe',
-      unit: 'recettes',
+      unit: { fr: 'recettes', en: 'recipes' },
       groups: [
         {
           items: [
             { id: 'nutella', name: 'Nutella', price: 15 },
-            { id: 'nutella-caramel', name: 'Nutella caramel beurre salé', price: 16 },
-            { id: 'nutella-pistache', name: 'Nutella pistache', price: 19 },
+            { id: 'nutella-caramel', name: { fr: 'Nutella caramel beurre salé', en: 'Nutella & salted butter caramel' }, price: 16 },
+            { id: 'nutella-pistache', name: { fr: 'Nutella pistache', en: 'Nutella & pistachio' }, price: 19 },
             { id: 'ferrero', name: 'Ferrero Rocher', price: 14 },
           ],
         },
@@ -197,18 +199,18 @@ window.EIGHTIN = {
     {
       id: 'gaufres-sucrees',
       section: 'sweet',
-      name: 'Gaufres',
-      subtitle: 'Sucrées',
-      label: 'Gaufres sucrées',
+      name: { fr: 'Gaufres', en: 'Waffles' },
+      subtitle: { fr: 'Sucrées', en: 'Sweet' },
+      label: { fr: 'Gaufres sucrées', en: 'Sweet waffles' },
       theme: 'sky',
       icon: 'waffle',
-      unit: 'recettes',
+      unit: { fr: 'recettes', en: 'recipes' },
       groups: [
         {
           items: [
             { id: 'nutella', name: 'Nutella', price: 15 },
-            { id: 'nutella-caramel', name: 'Nutella caramel beurre salé', price: 16 },
-            { id: 'nutella-pistache', name: 'Nutella pistache', price: 19 },
+            { id: 'nutella-caramel', name: { fr: 'Nutella caramel beurre salé', en: 'Nutella & salted butter caramel' }, price: 16 },
+            { id: 'nutella-pistache', name: { fr: 'Nutella pistache', en: 'Nutella & pistachio' }, price: 19 },
             { id: 'ferrero', name: 'Ferrero Rocher', price: 14 },
           ],
         },
@@ -218,11 +220,14 @@ window.EIGHTIN = {
       id: 'brunch',
       section: 'sweet',
       name: 'Brunch',
-      subtitle: 'De 8h à 14h',
+      subtitle: { fr: 'De 8h à 14h', en: '8am – 2pm' },
       theme: 'mint',
       icon: 'croissant',
-      unit: 'formules',
-      note: 'Tous les brunchs sont servis avec un jus et un café.',
+      unit: { fr: 'formules', en: 'dishes' },
+      note: {
+        fr: 'Tous les brunchs sont servis avec un jus et un café.',
+        en: 'All brunch items are served with a juice and a coffee.',
+      },
       groups: [
         {
           items: [
@@ -240,10 +245,13 @@ window.EIGHTIN = {
       id: 'gourmet-corner',
       section: 'sweet',
       name: 'Gourmet Corner',
-      subtitle: 'Chaque jour en vitrine',
+      subtitle: { fr: 'Chaque jour en vitrine', en: 'Daily at the counter' },
       theme: 'navy',
       icon: 'cookie',
-      info: 'Une sélection de douceurs fraîchement préparées, livrées chaque jour au comptoir : brownies, brookies, cookies, tarte au lemon curd, cakes… Venez voir la vitrine !',
+      info: {
+        fr: 'Une sélection de douceurs fraîchement préparées, livrées chaque jour au comptoir : brownies, brookies, cookies, tarte au lemon curd, cakes… Venez voir la vitrine !',
+        en: 'A selection of freshly baked sweet treats, delivered daily to our display counter: brownies, brookies, cookies, lemon curd tart, cakes… Come and check it out!',
+      },
       groups: [],
     },
 
@@ -254,13 +262,13 @@ window.EIGHTIN = {
       name: 'Omelettes',
       theme: 'navy',
       icon: 'egg',
-      unit: 'recettes',
+      unit: { fr: 'recettes', en: 'recipes' },
       groups: [
         {
           items: [
             { id: 'mozzarella', name: 'Mozzarella', price: 12 },
-            { id: 'thon-mozzarella', name: 'Thon mozzarella', price: 15 },
-            { id: 'jambon-mozzarella', name: 'Jambon mozzarella', price: 15 },
+            { id: 'thon-mozzarella', name: { fr: 'Thon mozzarella', en: 'Tuna mozzarella' }, price: 15 },
+            { id: 'jambon-mozzarella', name: { fr: 'Jambon mozzarella', en: 'Ham mozzarella' }, price: 15 },
           ],
         },
       ],
@@ -269,19 +277,19 @@ window.EIGHTIN = {
       id: 'crepes-salees',
       section: 'savory',
       name: 'Crêpes',
-      subtitle: 'Salées',
-      label: 'Crêpes salées',
+      subtitle: { fr: 'Salées', en: 'Savory' },
+      label: { fr: 'Crêpes salées', en: 'Savory crêpes' },
       theme: 'sky',
       icon: 'crepe',
-      unit: 'recettes',
+      unit: { fr: 'recettes', en: 'recipes' },
       groups: [
         {
           items: [
-            { id: 'thon-mozzarella', name: 'Thon mozzarella', price: 14 },
-            { id: 'thon-mozzarella-oeuf', name: 'Thon mozzarella œuf', price: 15 },
-            { id: 'jambon-mozzarella', name: 'Jambon mozzarella', price: 14 },
-            { id: 'poulet-pesto', name: 'Poulet pesto mozzarella', price: 18 },
-            { id: 'saumon-mozzarella', name: 'Saumon mozzarella', price: 24 },
+            { id: 'thon-mozzarella', name: { fr: 'Thon mozzarella', en: 'Tuna mozzarella' }, price: 14 },
+            { id: 'thon-mozzarella-oeuf', name: { fr: 'Thon mozzarella œuf', en: 'Tuna mozzarella & egg' }, price: 15 },
+            { id: 'jambon-mozzarella', name: { fr: 'Jambon mozzarella', en: 'Ham mozzarella' }, price: 14 },
+            { id: 'poulet-pesto', name: { fr: 'Poulet pesto mozzarella', en: 'Chicken pesto mozzarella' }, price: 18 },
+            { id: 'saumon-mozzarella', name: { fr: 'Saumon mozzarella', en: 'Salmon mozzarella' }, price: 24 },
           ],
         },
       ],
@@ -292,14 +300,14 @@ window.EIGHTIN = {
       name: 'Burgers',
       theme: 'mint',
       icon: 'burger',
-      unit: 'burgers',
+      unit: { fr: 'burgers', en: 'burgers' },
       groups: [
         {
           items: [
             { id: 'classic', name: 'Classic Burger', price: 20 },
             { id: 'grilled-chicken', name: 'Grilled Chicken Burger', price: 17 },
             { id: 'fried-chicken', name: 'Fried Chicken Burger', price: 19 },
-            { id: 'eightin', name: 'Eight’In Burger', desc: 'Bresaola & œuf', price: 25 },
+            { id: 'eightin', name: 'Eight’In Burger', desc: { fr: 'Bresaola & œuf', en: 'Bresaola & egg' }, price: 25 },
           ],
         },
       ],
@@ -307,19 +315,19 @@ window.EIGHTIN = {
     {
       id: 'gaufres-salees',
       section: 'savory',
-      name: 'Gaufres',
-      subtitle: 'Salées',
-      label: 'Gaufres salées',
+      name: { fr: 'Gaufres', en: 'Waffles' },
+      subtitle: { fr: 'Salées', en: 'Savory' },
+      label: { fr: 'Gaufres salées', en: 'Savory waffles' },
       theme: 'navy',
       icon: 'waffle',
-      unit: 'recettes',
+      unit: { fr: 'recettes', en: 'recipes' },
       groups: [
         {
           items: [
-            { id: 'thon-mozzarella', name: 'Thon mozzarella', price: 19 },
-            { id: 'jambon-mozzarella', name: 'Jambon mozzarella', price: 17 },
-            { id: 'poulet-pesto', name: 'Poulet pesto mozzarella', price: 19 },
-            { id: 'saumon-mozzarella', name: 'Saumon mozzarella', price: 25 },
+            { id: 'thon-mozzarella', name: { fr: 'Thon mozzarella', en: 'Tuna mozzarella' }, price: 19 },
+            { id: 'jambon-mozzarella', name: { fr: 'Jambon mozzarella', en: 'Ham mozzarella' }, price: 17 },
+            { id: 'poulet-pesto', name: { fr: 'Poulet pesto mozzarella', en: 'Chicken pesto mozzarella' }, price: 19 },
+            { id: 'saumon-mozzarella', name: { fr: 'Saumon mozzarella', en: 'Salmon mozzarella' }, price: 25 },
           ],
         },
       ],

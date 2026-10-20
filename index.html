@@ -26,46 +26,53 @@
 
   <!-- NAV -->
   <nav class="nav" id="nav">
-    <span class="nav-place">Boumhal · Banlieue Sud</span>
-    <a href="#top" class="nav-logo" aria-label="Eight’In Flour &amp; Coffee — accueil">
+    <form class="nav-search" id="nav-search" role="search" autocomplete="off">
+      <label class="sr-only" for="search-input" data-i18n="searchLabel">Rechercher sur la carte</label>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5L21 21" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      <input type="search" id="search-input" placeholder="Rechercher sur la carte…" data-i18n-placeholder="searchPlaceholder" aria-controls="search-results" aria-expanded="false" enterkeyhint="search" spellcheck="false" />
+    </form>
+    <a href="#top" class="nav-logo" aria-label="Eight’In Flour &amp; Coffee — accueil" data-i18n-aria="navHome">
       <svg class="logo-mark nav-logo-mark" viewBox="71 132 2311.3 1047.3" aria-hidden="true" focusable="false"><use href="#eightin-logo"/></svg>
       <span class="nav-logo-tag" aria-hidden="true">Flour<br />&amp; Coffee</span>
     </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#menu">Menu</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="hamburger" id="hamburger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-right">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="search-toggle" id="search-toggle" type="button" aria-label="Rechercher" data-i18n-aria="searchToggle" aria-expanded="false" aria-controls="nav-search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5L21 21" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="lang-switch" role="group" aria-label="Langue" data-i18n-aria="langGroup">
+        <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="hamburger" id="hamburger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
+
+  <!-- RÉSULTATS DE RECHERCHE -->
+  <div class="search-results" id="search-results" hidden>
+    <p class="search-status" id="search-status" aria-live="polite"></p>
+    <ul class="search-list" id="search-list"></ul>
+  </div>
 
   <main>
     <!-- HERO -->
     <section class="hero" id="top">
       <div class="hero-strokes" aria-hidden="true"></div>
-      <div class="hero-badge">
-        <svg viewBox="0 0 64 64" aria-hidden="true"><path fill="currentColor" d="M32 4C21 4 13 12 13 23c0 14 19 35 19 35s19-21 19-35C51 12 43 4 32 4Zm0 27a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z"/></svg>
-        Boumhal — Banlieue Sud, Tunisie
-      </div>
       <h1 class="lockup">
         <svg class="logo-mark lockup-mark" viewBox="71 132 2311.3 1047.3" aria-hidden="true" focusable="false"><use href="#eightin-logo"/></svg>
         <span class="sr-only">Eight’In</span>
         <span class="lockup-tag">Flour<br />&amp; Coffee</span>
       </h1>
       <p class="hero-tagline">But first… coffee. Then croissants.</p>
-      <p class="hero-desc">
-        Votre nouvelle halte quotidienne à Boumhal : brunch, crêpes, gaufres, burgers,
-        cafés glacés et mojitos. Ouvert tous les jours, de 7h à minuit.
-      </p>
       <div class="hero-btns">
-        <a href="#menu" class="btn btn-primary">Voir le menu</a>
-        <a href="#contact" class="btn btn-outline">Nous trouver</a>
+        <a href="#menu" class="btn btn-primary" data-i18n="heroMenu">Voir le menu</a>
+        <a href="#contact" class="btn btn-outline" data-i18n="heroFind">Nous trouver</a>
       </div>
-      <a href="#selection" class="hero-scroll" aria-label="Défiler vers la suite">
-        <span class="scroll-line"></span>
-        <span>Défiler</span>
-      </a>
     </section>
 
     <!-- SLOGANS -->
@@ -79,9 +86,9 @@
     <!-- SÉLECTION -->
     <section class="section section-mint" id="selection">
       <header class="section-header reveal">
-        <div class="label">Sélection</div>
-        <h2>À découvrir</h2>
-        <p>Quelques créations de la carte — touchez pour les ajouter à votre commande.</p>
+        <div class="label" data-i18n="selLabel">Sélection</div>
+        <h2 data-i18n="selTitle">À découvrir</h2>
+        <p data-i18n="selText">Quelques créations de la carte — touchez pour les ajouter à votre commande.</p>
       </header>
       <div class="featured-grid" id="featured-grid"></div>
     </section>
@@ -90,78 +97,71 @@
     <section class="statement" aria-label="But first, coffee">
       <div class="statement-strokes" aria-hidden="true"></div>
       <p class="statement-big reveal">But first,<br />coffee.</p>
-      <p class="statement-hand reveal">Nos partenaires café : illy &amp; Alta Caffè</p>
+      <p class="statement-hand reveal" data-i18n="partners">Nos partenaires café : illy &amp; Alta Caffè</p>
     </section>
 
     <!-- MENU -->
     <section class="section" id="menu">
       <header class="section-header reveal">
-        <div class="label">Notre carte</div>
-        <h2>Le Menu</h2>
-        <p>Ouvrez une catégorie et touchez un article pour l’ajouter à votre commande.</p>
+        <div class="label" data-i18n="menuLabel">Notre carte</div>
+        <h2 data-i18n="menuTitle">Le Menu</h2>
+        <p data-i18n="menuText">Ouvrez une catégorie et touchez un article pour l’ajouter à votre commande.</p>
       </header>
-      <div class="menu-tabs" id="menu-tabs" role="tablist" aria-label="Rubriques du menu"></div>
+      <div class="menu-tabs" id="menu-tabs" role="tablist" aria-label="Rubriques du menu" data-i18n-aria="menuTabs"></div>
       <div class="menu-grid" id="menu-grid" role="tabpanel"></div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="section section-sky" id="contact">
-      <header class="section-header reveal">
-        <div class="label">Venez nous voir</div>
-        <h2>Find us here</h2>
-      </header>
-      <div class="contact-cards">
-        <div class="contact-card reveal">
-          <svg class="contact-icon" viewBox="0 0 64 64" aria-hidden="true"><path fill="currentColor" d="M32 4C21 4 13 12 13 23c0 14 19 35 19 35s19-21 19-35C51 12 43 4 32 4Zm0 27a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z"/></svg>
-          <h3>Adresse</h3>
-          <p>Boumhal — Banlieue Sud<br />Tunisie</p>
-          <a class="contact-link" id="maps-link" href="https://maps.app.goo.gl/udovAyAhgXNVn44n8" target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
-        </div>
-        <div class="contact-card reveal">
-          <svg class="contact-icon" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="26" fill="currentColor"/><path d="M32 16v16l10 7" fill="none" stroke="#EAFBF4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <h3>Horaires</h3>
-          <p>Tous les jours<br />7h00 – 00h00</p>
-        </div>
-        <div class="contact-card reveal">
-          <svg class="contact-icon" viewBox="0 0 64 64" aria-hidden="true"><path fill="currentColor" d="M12 24h36v16c0 10-8 16-18 16S12 50 12 40Zm36 4c10 0 10 18-1 17l.5-5c5.5 0 5.5-7 .5-7Z"/><rect x="8" y="56" width="44" height="4" rx="2" fill="currentColor"/><path d="M22 6c-4 4 4 7 0 12M30 4c-4 5 4 8 0 13M38 6c-4 4 4 7 0 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
-          <h3>Nos cafés</h3>
-          <p>Partenaires<br />illy &amp; Alta Caffè</p>
-        </div>
-        <div class="contact-card reveal">
-          <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor"/></svg>
-          <h3>Instagram</h3>
-          <a class="contact-link" href="https://www.instagram.com/eightincoffee/" target="_blank" rel="noopener">@eightincoffee</a>
-        </div>
-      </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="footer">
+  <!-- FOOTER : infos pratiques -->
+  <footer class="footer" id="contact">
     <div class="footer-strokes" aria-hidden="true"></div>
-    <a href="#top" class="footer-logo" aria-label="Retour en haut">
-      <svg class="logo-mark footer-logo-mark" viewBox="71 132 2311.3 1047.3" aria-hidden="true" focusable="false"><use href="#eightin-logo"/></svg>
-      <span class="footer-logo-tag" aria-hidden="true">Flour<br />&amp; Coffee</span>
-    </a>
-    <p>Boumhal — Banlieue Sud, Tunisie · Tous les jours, 7h – minuit</p>
-    <a class="footer-insta" href="https://www.instagram.com/eightincoffee/" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor"/></svg>
-      @eightincoffee
-    </a>
-    <p class="footer-copy">© <span id="year">2026</span> Eight’In Flour &amp; Coffee. Tous droits réservés.</p>
+    <div class="footer-head">
+      <a href="#top" class="footer-logo" aria-label="Retour en haut" data-i18n-aria="footTop">
+        <svg class="logo-mark footer-logo-mark" viewBox="71 132 2311.3 1047.3" aria-hidden="true" focusable="false"><use href="#eightin-logo"/></svg>
+        <span class="footer-logo-tag" aria-hidden="true">Flour<br />&amp; Coffee</span>
+      </a>
+      <div class="footer-title">
+        <div class="label" data-i18n="footVisit">Venez nous voir</div>
+        <h2>Find us here</h2>
+      </div>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <svg class="footer-icon" viewBox="0 0 64 64" aria-hidden="true"><path fill="currentColor" d="M32 4C21 4 13 12 13 23c0 14 19 35 19 35s19-21 19-35C51 12 43 4 32 4Zm0 27a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z"/></svg>
+        <h3 data-i18n="footAddr">Adresse</h3>
+        <p><span data-i18n="footAddr1">Boumhal — Banlieue Sud</span><br /><span data-i18n="footAddr2">Tunisie</span></p>
+        <a class="footer-link" id="maps-link" href="https://maps.app.goo.gl/udovAyAhgXNVn44n8" target="_blank" rel="noopener" data-i18n="footMaps">Ouvrir dans Google Maps</a>
+      </div>
+      <div class="footer-col">
+        <svg class="footer-icon" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="26" fill="currentColor"/><path d="M32 16v16l10 7" fill="none" stroke="#12293F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3 data-i18n="footHours">Horaires</h3>
+        <p><span data-i18n="footHours1">Tous les jours</span><br /><span data-i18n="footHours2">7h00 – 00h00</span></p>
+      </div>
+      <div class="footer-col">
+        <svg class="footer-icon" viewBox="0 0 64 64" aria-hidden="true"><path fill="currentColor" d="M12 24h36v16c0 10-8 16-18 16S12 50 12 40Zm36 4c10 0 10 18-1 17l.5-5c5.5 0 5.5-7 .5-7Z"/><rect x="8" y="56" width="44" height="4" rx="2" fill="currentColor"/><path d="M22 6c-4 4 4 7 0 12M30 4c-4 5 4 8 0 13M38 6c-4 4 4 7 0 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+        <h3 data-i18n="footCoffee">Nos cafés</h3>
+        <p><span data-i18n="footCoffee1">Partenaires</span><br />illy &amp; Alta Caffè</p>
+      </div>
+      <div class="footer-col">
+        <svg class="footer-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor"/></svg>
+        <h3>Instagram</h3>
+        <a class="footer-link" href="https://www.instagram.com/eightincoffee/" target="_blank" rel="noopener">@eightincoffee</a>
+      </div>
+    </div>
+    <p class="footer-copy">© <span id="year">2026</span> Eight’In Flour &amp; Coffee. <span data-i18n="footRights">Tous droits réservés.</span></p>
   </footer>
 
   <!-- COMMANDE : bulle + panneau -->
   <button class="cart-bubble" id="cart-bubble" type="button" aria-controls="cart-panel" aria-expanded="false" hidden>
     <svg viewBox="0 0 64 64" aria-hidden="true"><path fill="currentColor" d="M14 22h36l-3 36q-.2 2-3 2H20q-2.8 0-3-2Z"/><path d="M24 26v-8c0-8 16-8 16 0v8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
-    <span class="sr-only">Ma commande :</span>
+    <span class="sr-only" data-i18n="cartBubble">Ma commande :</span>
     <span class="cart-count" id="cart-count" aria-live="polite">0</span>
   </button>
 
-  <aside class="cart-panel" id="cart-panel" aria-label="Ma commande" hidden>
+  <aside class="cart-panel" id="cart-panel" aria-label="Ma commande" data-i18n-aria="cartTitle" hidden>
     <div class="cart-header">
-      <h3>Ma commande</h3>
-      <button class="icon-btn" id="cart-close" type="button" aria-label="Fermer">✕</button>
+      <h3 data-i18n="cartTitle">Ma commande</h3>
+      <button class="icon-btn" id="cart-close" type="button" aria-label="Fermer" data-i18n-aria="close">✕</button>
     </div>
     <div class="cart-list" id="cart-list"></div>
     <div class="cart-footer">
@@ -169,8 +169,8 @@
       <span class="cart-total" id="cart-total">0 DT</span>
     </div>
     <div class="cart-actions">
-      <button class="btn btn-navy" id="cart-checkout" type="button">Commander à la caisse</button>
-      <button class="link-btn" id="cart-clear" type="button">Vider la commande</button>
+      <button class="btn btn-navy" id="cart-checkout" type="button" data-i18n="cartCheckout">Commander à la caisse</button>
+      <button class="link-btn" id="cart-clear" type="button" data-i18n="cartClear">Vider la commande</button>
     </div>
   </aside>
 
@@ -179,7 +179,7 @@
     <div class="ticket-paper">
       <div class="ticket-head">
         <svg class="logo-mark ticket-logo" viewBox="71 132 2311.3 1047.3" aria-hidden="true" focusable="false"><use href="#eightin-logo"/></svg>
-        <p class="ticket-sign" id="ticket-title"><span aria-hidden="true">↓</span> Commande à la caisse <span aria-hidden="true">↓</span></p>
+        <p class="ticket-sign" id="ticket-title"><span aria-hidden="true">↓</span> <span data-i18n="ticketSign">Commande à la caisse</span> <span aria-hidden="true">↓</span></p>
         <p class="ticket-time" id="ticket-time"></p>
       </div>
       <ul class="ticket-list" id="ticket-list"></ul>
@@ -187,15 +187,16 @@
         <span>Total</span>
         <span id="ticket-total"></span>
       </div>
-      <p class="ticket-note">Présentez cet écran à la caisse — le paiement se fait au comptoir.</p>
+      <p class="ticket-note" data-i18n="ticketNote">Présentez cet écran à la caisse — le paiement se fait au comptoir.</p>
       <div class="ticket-actions">
-        <button class="btn btn-navy" id="ticket-close" type="button">Fermer</button>
-        <button class="link-btn" id="ticket-new" type="button">Nouvelle commande</button>
+        <button class="btn btn-navy" id="ticket-close" type="button" data-i18n="ticketClose">Fermer</button>
+        <button class="link-btn" id="ticket-new" type="button" data-i18n="ticketNew">Nouvelle commande</button>
       </div>
     </div>
   </dialog>
 
   <script src="assets/js/menu-data.js" defer></script>
+  <script src="assets/js/icons.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 </body>
 </html>
