@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Eight’In — Flour &amp; Coffee · Boumhal</title>
-  <meta name="description" content="Eight’In Flour &amp; Coffee à Boumhal, banlieue sud de Tunis : iced coffee, frappuccino, milkshakes, mojitos et croissants. Ouvert tous les jours de 7h à minuit." />
+  <meta name="description" content="Eight’In Flour &amp; Coffee à Boumhal, banlieue sud de Tunis : brunch, crêpes, gaufres, burgers, iced coffee, frappuccino et mojitos. Ouvert tous les jours de 7h à minuit." />
   <meta name="theme-color" content="#1B3A57" />
 
   <meta property="og:type" content="website" />
@@ -53,8 +53,8 @@
       </h1>
       <p class="hero-tagline">But first… coffee. Then croissants.</p>
       <p class="hero-desc">
-        Votre nouvelle halte quotidienne à Boumhal : cafés glacés, frappuccinos, milkshakes,
-        mojitos et viennoiseries. Ouvert tous les jours, de 7h à minuit.
+        Votre nouvelle halte quotidienne à Boumhal : brunch, crêpes, gaufres, burgers,
+        cafés glacés et mojitos. Ouvert tous les jours, de 7h à minuit.
       </p>
       <div class="hero-btns">
         <a href="#menu" class="btn btn-primary">Voir le menu</a>
@@ -97,18 +97,18 @@
           <h2>Your daily stop</h2>
           <p class="about-hand">Meet. Eat. Repeat.</p>
           <p>
-            Eight’In, c’est le café de quartier de Boumhal, en banlieue sud : un espresso le matin,
-            un croissant qui ne ressemble à aucun autre, un iced latte l’après-midi et un mojito
-            glacé en soirée — on reste ouvert jusqu’à minuit.
+            Eight’In, c’est le café de quartier de Boumhal, en banlieue sud : un brunch le matin
+            (de 8h à 14h), une crêpe, une gaufre ou un burger, des douceurs en vitrine et des boissons
+            glacées — on reste ouvert jusqu’à minuit.
           </p>
           <p>
             Nos cafés sont préparés avec nos partenaires <strong>illy</strong> et <strong>Alta Caffè</strong>.
             Ici, on commande à la caisse : composez votre commande sur le site, puis montrez-la au comptoir.
           </p>
           <ul class="about-stats">
-            <li><span class="stat-num">7j/7</span><span class="stat-label">Ouvert</span></li>
-            <li><span class="stat-num">7h–00h</span><span class="stat-label">Horaires</span></li>
-            <li><span class="stat-num" id="drink-count">40+</span><span class="stat-label">Boissons</span></li>
+            <li><span class="stat-num">7h–00h</span><span class="stat-label">Tous les jours</span></li>
+            <li><span class="stat-num" id="drink-count">41</span><span class="stat-label">Boissons</span></li>
+            <li><span class="stat-num" id="food-count">30</span><span class="stat-label">Plats &amp; douceurs</span></li>
           </ul>
         </div>
       </div>
@@ -126,9 +126,10 @@
       <header class="section-header reveal">
         <div class="label">Notre carte</div>
         <h2>Le Menu</h2>
-        <p>Prix en dinars tunisiens (DT). Ouvrez une catégorie et touchez une boisson pour l’ajouter.</p>
+        <p>Prix en dinars tunisiens (DT). Ouvrez une catégorie et touchez un article pour l’ajouter à votre commande.</p>
       </header>
-      <div class="menu-grid" id="menu-grid"></div>
+      <div class="menu-tabs" id="menu-tabs" role="tablist" aria-label="Rubriques du menu"></div>
+      <div class="menu-grid" id="menu-grid" role="tabpanel"></div>
     </section>
 
     <!-- CONTACT -->

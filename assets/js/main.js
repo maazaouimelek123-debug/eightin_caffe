@@ -5,7 +5,7 @@
 (() => {
   'use strict';
 
-  const { SITE, MENU, FEATURED } = window.EIGHTIN;
+  const { SITE, SECTIONS, MENU, FEATURED } = window.EIGHTIN;
   const SVG_NS = 'http://www.w3.org/2000/svg';
   const STORE_KEY = 'eightin-commande-v1';
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -89,6 +89,45 @@
       ['ellipse', { class: 'seg', cx: 32, cy: 30, rx: 9.5, ry: 14 }],
       ['path', { class: 'as thin', d: 'M27 24q5-3 10 0M26.5 31q5.5-3 11 0' }],
     ],
+    crepe: [
+      ['ellipse', { class: 'm', cx: 32, cy: 54, rx: 28, ry: 4.5 }],
+      ['path', { class: 'm', d: 'M4 48C4 28 18 15 35 15C48 15 57 24 60 37L44 48Z' }],
+      ['path', { class: 'as', d: 'M44 48C40 35 30 26 16 24' }],
+      ['path', { class: 'as', d: 'M17 38c4-3 6 2 10 0s6-3 9 1' }],
+    ],
+    waffle: [
+      ['circle', { class: 'm', cx: 32, cy: 32, r: 25 }],
+      ['path', { class: 'as', transform: 'rotate(45 32 32)', d: 'M20 16V48M28 12.4V51.6M36 12.4V51.6M44 16V48M16 20H48M12.4 28H51.6M12.4 36H51.6M16 44H48' }],
+    ],
+    egg: [
+      ['path', { class: 'm', d: 'M44 31l17-4 1.5 5-17 4z' }],
+      ['circle', { class: 'm', cx: 27, cy: 34, r: 21 }],
+      ['path', { class: 'a', d: 'M15 33c-1-7 6-12 12-10 6-4 15 0 14 8 4 6-2 13-9 12-6 4-14 1-15-5-4-1-4-4-2-5z' }],
+      ['circle', { class: 'm', cx: 28, cy: 33, r: 5.5 }],
+    ],
+    burger: [
+      ['path', { class: 'm', d: 'M9 29C9 15 55 15 55 29z' }],
+      ['ellipse', { class: 'a', cx: 24, cy: 23, rx: 1.8, ry: 1.1, transform: 'rotate(-20 24 23)' }],
+      ['ellipse', { class: 'a', cx: 32, cy: 20.5, rx: 1.8, ry: 1.1 }],
+      ['ellipse', { class: 'a', cx: 40, cy: 23, rx: 1.8, ry: 1.1, transform: 'rotate(20 40 23)' }],
+      ['ellipse', { class: 'a', cx: 28.5, cy: 26.5, rx: 1.8, ry: 1.1, transform: 'rotate(-10 28.5 26.5)' }],
+      ['ellipse', { class: 'a', cx: 36, cy: 26.5, rx: 1.8, ry: 1.1, transform: 'rotate(10 36 26.5)' }],
+      ['path', { class: 'a', d: 'M7 33q3.5-3 7 0t7 0t7 0t7 0t7 0t7 0t7 0v3H7z' }],
+      ['rect', { class: 'm', x: 8, y: 38, width: 48, height: 7, rx: 3.5 }],
+      ['path', { class: 'm', d: 'M9 47h46v1c0 4-3 6-7 6H16c-4 0-7-2-7-6z' }],
+    ],
+    cookie: [
+      ['circle', { class: 'm', cx: 31, cy: 34, r: 23 }],
+      ['circle', { class: 'bg', cx: 52, cy: 15, r: 8 }],
+      ['circle', { class: 'bg', cx: 57, cy: 26, r: 6 }],
+      ['circle', { class: 'a', cx: 22, cy: 26, r: 3 }],
+      ['circle', { class: 'a', cx: 34, cy: 23, r: 2.5 }],
+      ['circle', { class: 'a', cx: 24, cy: 41, r: 3 }],
+      ['circle', { class: 'a', cx: 37, cy: 36, r: 3.2 }],
+      ['circle', { class: 'a', cx: 45, cy: 45, r: 2.4 }],
+      ['circle', { class: 'a', cx: 31, cy: 49, r: 2.2 }],
+      ['circle', { class: 'a', cx: 14, cy: 35, r: 2 }],
+    ],
   };
 
   /* ---------- Helpers DOM (pas d'innerHTML : tout passe par textContent) ---------- */
@@ -134,12 +173,16 @@
   const round3 = n => Math.round(n * 1000) / 1000;
   const fmt = p => (Number.isInteger(p) ? String(p) : p.toFixed(3)) + ' DT';
 
-  /* ---------- Index des boissons : "categorie/boisson" → infos ---------- */
+  /* ---------- Index des articles : "categorie/article" → infos ---------- */
+  const kindOf = id => (SECTIONS.find(s => s.id === id) || {}).kind;
+  const catLabel = cat => cat.label || cat.name;
   const ITEMS = new Map();
   for (const cat of MENU) {
     for (const g of cat.groups) {
       for (const it of g.items) {
-        ITEMS.set(`${cat.id}/${it.id}`, { name: it.name, price: it.price, cat: cat.name, theme: cat.theme, icon: cat.icon });
+        ITEMS.set(`${cat.id}/${it.id}`, {
+          name: it.name, price: it.price, cat: catLabel(cat), theme: cat.theme, icon: cat.icon, kind: kindOf(cat.section),
+        });
       }
     }
   }
@@ -162,20 +205,55 @@
     }
   }
 
-  /* ---------- Rendu : menu en cartes accordéon ---------- */
+  /* ---------- Rendu : onglets + menu en cartes accordéon ---------- */
+  const grid = document.getElementById('menu-grid');
+  const tabs = document.getElementById('menu-tabs');
+
+  function renderTabs() {
+    for (const s of SECTIONS) {
+      const n = MENU.filter(c => c.section === s.id).reduce((sum, c) => sum + c.groups.reduce((m, g) => m + g.items.length, 0), 0);
+      const tab = h('button', { type: 'button', role: 'tab', class: 'menu-tab', id: `tab-${s.id}`, 'aria-controls': 'menu-grid', 'data-section': s.id },
+        s.label, n ? h('span', { class: 'menu-tab-count', text: String(n) }) : null);
+      tab.addEventListener('click', () => setSection(s.id));
+      tabs.append(tab);
+    }
+    tabs.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      const list = [...tabs.querySelectorAll('[role="tab"]')];
+      const i = list.indexOf(document.activeElement);
+      if (i < 0) return;
+      const next = list[(i + (e.key === 'ArrowRight' ? 1 : list.length - 1)) % list.length];
+      next.focus();
+      setSection(next.dataset.section);
+    });
+  }
+
+  function setSection(id) {
+    document.querySelectorAll('.menu-card.open').forEach(c => setCardOpen(c, false));
+    for (const tab of tabs.querySelectorAll('[role="tab"]')) {
+      const on = tab.dataset.section === id;
+      tab.setAttribute('aria-selected', String(on));
+      tab.tabIndex = on ? 0 : -1;
+    }
+    for (const card of grid.querySelectorAll('.menu-card')) {
+      card.hidden = card.dataset.section !== id;
+      if (!card.hidden) card.classList.remove('reveal-pending');
+    }
+    grid.setAttribute('aria-labelledby', `tab-${id}`);
+  }
+
   function renderMenu() {
-    const grid = document.getElementById('menu-grid');
     for (const cat of MENU) {
       const prices = cat.groups.flatMap(g => g.items.map(it => it.price));
-      const countText = cat.soon
-        ? 'Bientôt sur le site'
+      const countText = cat.info
+        ? 'Brownies · cookies · cakes'
         : `${prices.length} ${cat.unit} · dès ${fmt(Math.min(...prices))}`;
       const panelId = `menu-${cat.id}`;
 
       const inner = h('div', { class: 'dropdown-inner' });
-      if (cat.soon) {
+      if (cat.info) {
         inner.append(
-          h('p', { class: 'dropdown-soon', text: cat.soon },
+          h('p', { class: 'dropdown-info', text: cat.info },
             h('br'),
             h('a', { href: `https://www.instagram.com/${SITE.instagram}/`, target: '_blank', rel: 'noopener', text: `Voir @${SITE.instagram}` })));
       } else {
@@ -184,7 +262,9 @@
           for (const it of g.items) {
             inner.append(
               h('button', { type: 'button', class: 'item', 'data-add': `${cat.id}/${it.id}`, 'aria-label': `Ajouter ${it.name} (${cat.name}), ${fmt(it.price)}` },
-                h('span', { class: 'item-name' }, it.name, it.tag && h('span', { class: 'item-tag', text: it.tag })),
+                h('span', { class: 'item-name' }, it.name,
+                  it.tag && h('span', { class: 'item-tag', text: it.tag }),
+                  it.desc && h('small', { class: 'item-desc', text: it.desc })),
                 h('span', { class: 'item-price', text: fmt(it.price) }),
                 h('span', { class: 'item-plus', 'aria-hidden': 'true', text: '+' })));
           }
@@ -204,7 +284,7 @@
       const panel = h('div', { class: 'card-dropdown', id: panelId }, h('div', { class: 'dropdown-clip' }, inner));
       panel.inert = true;
 
-      const card = h('article', { class: `menu-card reveal theme-${cat.theme}` }, h('h3', { class: 'card-heading' }, head), panel);
+      const card = h('article', { class: `menu-card reveal theme-${cat.theme}`, 'data-section': cat.section }, h('h3', { class: 'card-heading' }, head), panel);
       head.addEventListener('click', () => toggleCard(card));
       grid.append(card);
     }
@@ -398,11 +478,15 @@
 
   /* ---------- Démarrage ---------- */
   renderFeatured();
+  renderTabs();
   renderMenu();
+  setSection(SECTIONS[0].id);
   loadCart();
   renderCart();
   document.getElementById('maps-link').href = SITE.mapsUrl;
-  document.getElementById('drink-count').textContent = String(ITEMS.size);
+  const countKind = kind => [...ITEMS.values()].filter(it => it.kind === kind).length;
+  document.getElementById('drink-count').textContent = String(countKind('drink'));
+  document.getElementById('food-count').textContent = String(countKind('food'));
   document.getElementById('year').textContent = String(new Date().getFullYear());
   setupReveal();
 })();

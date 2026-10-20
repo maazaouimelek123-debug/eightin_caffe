@@ -3,7 +3,7 @@
 Site vitrine du café **Eight’In Flour & Coffee** (Boumhal, banlieue sud de Tunis).
 Site statique en HTML/CSS/JS, sans framework, sans build et sans backend.
 
-La structure reprend celle du site Bisou : nav fixe, hero plein écran, sélection, menu en cartes accordéon, panier, contact, footer.
+Une seule page : nav fixe, hero plein écran, sélection, à propos, menu par onglets (Boissons, Sweet & Brunch, Savory) en cartes accordéon, panier, contact, footer.
 L'identité visuelle (couleurs, typographies, motif « coups de pinceau ») est celle de l'Instagram [@eightincoffee](https://www.instagram.com/eightincoffee/) et de l'enseigne en boutique.
 
 ## Aperçu local
@@ -18,7 +18,7 @@ python3 -m http.server 8000
 ```
 index.html              Page unique (sections : hero, sélection, à propos, menu, contact)
 assets/css/style.css    Styles + palette (variables CSS dans :root)
-assets/js/menu-data.js  ← LE fichier à modifier pour les prix et les boissons
+assets/js/menu-data.js  ← LE fichier à modifier pour les prix et les articles
 assets/js/main.js       Rendu du menu, panier, ticket « commande à la caisse »
 assets/fonts/           Polices auto-hébergées (woff2)
 assets/img/             Logo SVG, motifs SVG, photo de l'enseigne, favicons, image de partage
@@ -30,11 +30,12 @@ vercel.json             En-têtes de sécurité (CSP stricte) pour un déploieme
 Tout se fait dans `assets/js/menu-data.js` :
 
 - **Changer un prix** : modifier `price` (en DT).
-- **Ajouter une boisson** : ajouter `{ id: 'mon-id', name: 'Nom', price: 12 }` dans la bonne catégorie (l'`id` doit être unique dans la catégorie).
-- **Ajouter une catégorie** : copier un bloc existant et choisir un `theme` (`navy`, `sky`, `mint`) et une `icon` (`iced`, `frappe`, `shake`, `smoothie`, `mojito`, `cocktail`, `classic`, `croissant`).
-- **Section « À découvrir »** : liste `FEATURED`, au format `'categorie/boisson'`.
+- **Ajouter un article** : ajouter `{ id: 'mon-id', name: 'Nom', price: 12 }` dans la bonne catégorie (l'`id` doit être unique dans la catégorie). Option : `desc` pour une précision sous le nom, `tag` pour une pastille.
+- **Ajouter une catégorie** : copier un bloc existant, choisir son onglet (`section` : `drinks`, `sweet`, `savory`), un `theme` (`navy`, `sky`, `mint`) et une `icon` (`iced`, `frappe`, `shake`, `smoothie`, `mojito`, `cocktail`, `classic`, `croissant`, `crepe`, `waffle`, `egg`, `burger`, `cookie`).
+- **Carte sans prix** (ex. Gourmet Corner) : remplacer les articles par un texte `info`.
+- **Section « À découvrir »** : liste `FEATURED`, au format `'categorie/article'`.
 
-Le nombre de boissons affiché dans « À propos » et les « dès X DT » sont calculés automatiquement.
+Les compteurs (onglets, « À propos ») et les « dès X DT » sont calculés automatiquement.
 
 ## Identité visuelle
 
@@ -50,7 +51,7 @@ Le nombre de boissons affiché dans « À propos » et les « dès X DT » sont 
 |---|---|---|
 | Yellowtail | Titres de sections et de catégories | Script la plus proche du logo (comparée à 12 autres) |
 | Bebas Neue | Slogans (« BUT FIRST, COFFEE. ») | Même condensé gras que les posts |
-| Patrick Hand | Noms des boissons, accents manuscrits | Proche de l'écriture des posts et des panneaux menu ; gère les accents français |
+| Patrick Hand | Noms des articles, accents manuscrits | Proche de l'écriture des posts et des panneaux menu ; gère les accents français |
 | Josefin Sans | Texte courant, libellés | Capitales espacées type « FLOUR AND COFFEE » |
 
 Licences : Yellowtail (Apache 2.0), Bebas Neue, Patrick Hand et Josefin Sans (SIL OFL 1.1), via Fontsource.
@@ -62,10 +63,7 @@ Le panier est gardé dans le navigateur (`localStorage`), sans aucune donnée en
 
 ## Déploiement
 
-- **Vercel** (comme Bisou) : importer le dépôt, sans configuration supplémentaire. `vercel.json` applique les en-têtes de sécurité.
+- **Vercel** : importer le dépôt, sans configuration supplémentaire. `vercel.json` applique les en-têtes de sécurité.
 - **GitHub Pages** : fonctionne aussi, mais sans les en-têtes de `vercel.json`.
 
 Après le déploiement, remplacer `og:image` dans `index.html` par l'URL absolue (`https://…/assets/img/og-image.jpg`) pour que l'aperçu WhatsApp / Facebook s'affiche.
-
-
-
