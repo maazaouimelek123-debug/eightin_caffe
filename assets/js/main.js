@@ -17,7 +17,6 @@
    * anglaise est dans STATIC_EN. Les textes générés par le script sont dans T. */
   const STATIC_EN = {
     navHome: 'Eight’In Flour & Coffee — home',
-    langGroup: 'Language',
     searchLabel: 'Search the menu',
     searchPlaceholder: 'Search the menu…',
     searchToggle: 'Search',
@@ -539,8 +538,13 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  /* ---------- Changement de langue ---------- */
-  const langButtons = document.querySelectorAll('[data-lang]');
+  /* ---------- Changement de langue : un seul bouton, la pastille glisse FR ⇄ EN ---------- */
+  const langSwitch = document.getElementById('lang-switch');
+
+  function syncLangSwitch() {
+    langSwitch.dataset.current = lang;
+    langSwitch.setAttribute('aria-label', lang === 'fr' ? 'Passer en anglais (English)' : 'Switch to French (Français)');
+  }
 
   function renderAll() {
     renderFeatured();
@@ -556,11 +560,12 @@
     if (next === lang) return;
     lang = next;
     try { localStorage.setItem(LANG_KEY, lang); } catch { /* idem */ }
-    langButtons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+    syncLangSwitch();
     applyStatic();
     renderAll();
   }
-  langButtons.forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+  // Un clic n'importe où sur le bouton bascule vers l'autre langue.
+  langSwitch.addEventListener('click', () => setLang(lang === 'fr' ? 'en' : 'fr'));
 
   /* ---------- Apparition au défilement ---------- */
   function setupReveal() {
@@ -582,7 +587,10 @@
   }
 
   /* ---------- Démarrage ---------- */
-  langButtons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+  // Pas d'animation au chargement si l'anglais était déjà choisi.
+  langSwitch.classList.add('no-anim');
+  syncLangSwitch();
+  requestAnimationFrame(() => requestAnimationFrame(() => langSwitch.classList.remove('no-anim')));
   applyStatic();
   loadCart();
   renderAll();

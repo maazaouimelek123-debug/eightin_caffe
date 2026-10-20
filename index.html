@@ -52,10 +52,11 @@
       <button class="search-toggle" id="search-toggle" type="button" aria-label="Rechercher" data-i18n-aria="searchToggle" aria-expanded="false" aria-controls="nav-search">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5L21 21" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
       </button>
-      <div class="lang-switch" role="group" aria-label="Langue" data-i18n-aria="langGroup">
-        <button type="button" data-lang="fr" aria-pressed="true">FR</button>
-        <button type="button" data-lang="en" aria-pressed="false">EN</button>
-      </div>
+      <button class="lang-switch" id="lang-switch" type="button" data-current="fr" aria-label="Passer en anglais (English)">
+        <span class="lang-thumb" aria-hidden="true"></span>
+        <span class="lang-opt" data-opt="fr" aria-hidden="true">FR</span>
+        <span class="lang-opt" data-opt="en" aria-hidden="true">EN</span>
+      </button>
       <button class="hamburger" id="hamburger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
       </button>
