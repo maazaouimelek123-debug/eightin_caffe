@@ -268,7 +268,7 @@ window.EIGHTIN = {
           items: [
             { id: 'mozzarella', name: 'Mozzarella', price: 12 },
             { id: 'thon-mozzarella', name: { fr: 'Thon mozzarella', en: 'Tuna mozzarella' }, price: 15 },
-            { id: 'jambon-mozzarella', name: { fr: 'Jambon mozzarella', en: 'Ham mozzarella' }, price: 15 },
+            { id: 'jambon-mozzarella', name: { fr: 'Jambon mozzarella', en: 'Turkey ham mozzarella' }, price: 15 },
           ],
         },
       ],
@@ -287,7 +287,7 @@ window.EIGHTIN = {
           items: [
             { id: 'thon-mozzarella', name: { fr: 'Thon mozzarella', en: 'Tuna mozzarella' }, price: 14 },
             { id: 'thon-mozzarella-oeuf', name: { fr: 'Thon mozzarella œuf', en: 'Tuna mozzarella & egg' }, price: 15 },
-            { id: 'jambon-mozzarella', name: { fr: 'Jambon mozzarella', en: 'Ham mozzarella' }, price: 14 },
+            { id: 'jambon-mozzarella', name: { fr: 'Jambon mozzarella', en: 'Turkey ham mozzarella' }, price: 14 },
             { id: 'poulet-pesto', name: { fr: 'Poulet pesto mozzarella', en: 'Chicken pesto mozzarella' }, price: 18 },
             { id: 'saumon-mozzarella', name: { fr: 'Saumon mozzarella', en: 'Salmon mozzarella' }, price: 24 },
           ],
@@ -325,7 +325,7 @@ window.EIGHTIN = {
         {
           items: [
             { id: 'thon-mozzarella', name: { fr: 'Thon mozzarella', en: 'Tuna mozzarella' }, price: 19 },
-            { id: 'jambon-mozzarella', name: { fr: 'Jambon mozzarella', en: 'Ham mozzarella' }, price: 17 },
+            { id: 'jambon-mozzarella', name: { fr: 'Jambon mozzarella', en: 'Turkey ham mozzarella' }, price: 17 },
             { id: 'poulet-pesto', name: { fr: 'Poulet pesto mozzarella', en: 'Chicken pesto mozzarella' }, price: 19 },
             { id: 'saumon-mozzarella', name: { fr: 'Saumon mozzarella', en: 'Salmon mozzarella' }, price: 25 },
           ],

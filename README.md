@@ -78,4 +78,4 @@ Le panier est gardé dans le navigateur (`localStorage`), sans aucune donnée en
 - **Vercel** : importer le dépôt, sans configuration supplémentaire. `vercel.json` applique les en-têtes de sécurité.
 - **GitHub Pages** : fonctionne aussi, mais sans les en-têtes de `vercel.json`.
 
-Après le déploiement, remplacer `og:image` dans `index.html` par l'URL absolue (`https://…/assets/img/og-image.jpg`) pour que l'aperçu WhatsApp / Facebook s'affiche.
+Site en ligne : **https://eightincaffe.vercel.app/**. L'aperçu de partage (WhatsApp, Facebook) utilise `https://eightincaffe.vercel.app/assets/img/og-image.jpg` ; si l'adresse change, mettre à jour `canonical`, `og:url` et `og:image` dans `index.html`.
