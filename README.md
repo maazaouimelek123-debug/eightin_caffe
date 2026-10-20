@@ -65,15 +65,5 @@ Le panier est gardé dans le navigateur (`localStorage`), sans aucune donnée en
 
 Après le déploiement, remplacer `og:image` dans `index.html` par l'URL absolue (`https://…/assets/img/og-image.jpg`) pour que l'aperçu WhatsApp / Facebook s'affiche.
 
-## À compléter
 
-- [ ] Vraies photos des boissons et des viennoiseries (actuellement, illustrations aux couleurs de la marque).
-- [ ] Carte « Flour » (croissants, sweets & savory) : prix inconnus, la catégorie affiche « bientôt ».
-- [ ] Lien Google Maps exact de la fiche (`mapsUrl` dans `menu-data.js`). Actuellement, c'est une recherche.
-- [ ] Logo vectoriel officiel (SVG/PDF) si disponible. Le logo est actuellement recomposé avec la police Yellowtail.
-- [ ] Vérifier les prix de la catégorie *Classics* sur le panneau (voir ci-dessous).
 
-## Points vérifiés / à valider
-
-- **Prix Classics** : sur la photo, les prix sont décalés d'une ligne par la perspective. Correspondance retenue : Strawberry 8, Orange 7, Lemonade 7, Soda 5, Water 0.5 L 3, Water 1 L 4, Tea 4, Infusion 5, Energy Drink 9.
-- **Orthographe corrigée** par rapport aux panneaux : *Basil Smash* (SMACH), *Blue Hawaiian* (HAWAIAN), *Spanish Americano* (SPANICH), *Frappuccino* (FRAPUCCINO).
