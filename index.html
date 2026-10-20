@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Eight’In — Flour &amp; Coffee · Boumhal</title>
+  <meta name="description" content="Eight’In Flour &amp; Coffee à Boumhal, banlieue sud de Tunis : iced coffee, frappuccino, milkshakes, mojitos et croissants. Ouvert tous les jours de 7h à minuit." />
+  <meta name="theme-color" content="#1B3A57" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Eight’In — Flour &amp; Coffee" />
+  <meta property="og:description" content="But first… coffee. Then croissants. Boumhal — Banlieue Sud, tous les jours de 7h à minuit." />
+  <meta property="og:image" content="assets/img/og-image.jpg" />
+  <meta property="og:locale" content="fr_TN" />
+
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+  <link rel="preload" href="assets/fonts/yellowtail-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/josefin-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <span class="nav-place">Boumhal · Banlieue Sud</span>
+    <a href="#top" class="nav-logo" aria-label="Eight’In Flour &amp; Coffee — accueil">
+      <span class="nav-logo-word">Eight’in</span>
+      <span class="nav-logo-tag">Flour<br />&amp; Coffee</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-strokes" aria-hidden="true"></div>
+      <div class="hero-badge">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><path fill="currentColor" d="M32 4C21 4 13 12 13 23c0 14 19 35 19 35s19-21 19-35C51 12 43 4 32 4Zm0 27a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z"/></svg>
+        Boumhal — Banlieue Sud, Tunisie
+      </div>
+      <h1 class="lockup">
+        <span class="lockup-word">Eight’in</span>
+        <span class="lockup-tag">Flour<br />&amp; Coffee</span>
+      </h1>
+      <p class="hero-tagline">But first… coffee. Then croissants.</p>
+      <p class="hero-desc">
+        Votre nouvelle halte quotidienne à Boumhal : cafés glacés, frappuccinos, milkshakes,
+        mojitos et viennoiseries. Ouvert tous les jours, de 7h à minuit.
+      </p>
+      <div class="hero-btns">
+        <a href="#menu" class="btn btn-primary">Voir le menu</a>
+        <a href="#contact" class="btn btn-outline">Nous trouver</a>
+      </div>
+      <a href="#selection" class="hero-scroll" aria-label="Défiler vers la suite">
+        <span class="scroll-line"></span>
+        <span>Défiler</span>
+      </a>
+    </section>
+
+    <!-- SLOGANS -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>But first, coffee</span><i></i><span>Then croissants</span><i></i><span>Meet. Eat. Repeat.</span><i></i><span>Your daily stop</span><i></i><span>Flour &amp; coffee moments</span><i></i>
+        <span>But first, coffee</span><i></i><span>Then croissants</span><i></i><span>Meet. Eat. Repeat.</span><i></i><span>Your daily stop</span><i></i><span>Flour &amp; coffee moments</span><i></i>
+      </div>
+    </div>
+
+    <!-- SÉLECTION -->
+    <section class="section section-mint" id="selection">
+      <header class="section-header reveal">
+        <div class="label">Sélection</div>
+        <h2>À découvrir</h2>
+        <p>Quelques créations de la carte — touchez pour les ajouter à votre commande.</p>
+      </header>
+      <div class="featured-grid" id="featured-grid"></div>
+    </section>
+
+    <!-- À PROPOS -->
+    <section class="section about" id="about">
+      <div class="about-inner">
+        <figure class="about-img reveal">
+          <img src="assets/img/enseigne.jpg" width="800" height="1000" loading="lazy"
+               alt="L’enseigne Eight’in au-dessus du comptoir, avec le panneau « Commande à la caisse »" />
+          <figcaption class="about-img-badge">Boumhal — Banlieue Sud</figcaption>
+        </figure>
+        <div class="about-content reveal">
+          <div class="label">Flour &amp; Coffee</div>
+          <h2>Your daily stop</h2>
+          <p class="about-hand">Meet. Eat. Repeat.</p>
+          <p>
+            Eight’In, c’est le café de quartier de Boumhal, en banlieue sud : un espresso le matin,
+            un croissant qui ne ressemble à aucun autre, un iced latte l’après-midi et un mojito
+            glacé en soirée — on reste ouvert jusqu’à minuit.
+          </p>
+          <p>
+            Nos cafés sont préparés avec nos partenaires <strong>illy</strong> et <strong>Alta Caffè</strong>.
+            Ici, on commande à la caisse : composez votre commande sur le site, puis montrez-la au comptoir.
+          </p>
+          <ul class="about-stats">
+            <li><span class="stat-num">7j/7</span><span class="stat-label">Ouvert</span></li>
+            <li><span class="stat-num">7h–00h</span><span class="stat-label">Horaires</span></li>
+            <li><span class="stat-num" id="drink-count">40+</span><span class="stat-label">Boissons</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- BANDEAU -->
+    <section class="statement" aria-label="But first, coffee">
+      <div class="statement-strokes" aria-hidden="true"></div>
+      <p class="statement-big reveal">But first,<br />coffee.</p>
+      <p class="statement-hand reveal">Nos partenaires café : illy &amp; Alta Caffè</p>
+    </section>
+
+    <!-- MENU -->
+    <section class="section" id="menu">
+      <header class="section-header reveal">
+        <div class="label">Notre carte</div>
+        <h2>Le Menu</h2>
+        <p>Prix en dinars tunisiens (DT). Ouvrez une catégorie et touchez une boisson pour l’ajouter.</p>
+      </header>
+      <div class="menu-grid" id="menu-grid"></div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section section-sky" id="contact">
+      <header class="section-header reveal">
+        <div class="label">Venez nous voir</div>
+        <h2>Find us here</h2>
+      </header>
+      <div class="contact-cards">
+        <div class="contact-card reveal">
+          <svg class="contact-icon" viewBox="0 0 64 64" aria-hidden="true"><path fill="currentColor" d="M32 4C21 4 13 12 13 23c0 14 19 35 19 35s19-21 19-35C51 12 43 4 32 4Zm0 27a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z"/></svg>
+          <h3>Adresse</h3>
+          <p>Boumhal — Banlieue Sud<br />Tunisie</p>
+          <a class="contact-link" id="maps-link" href="https://www.google.com/maps/search/?api=1&amp;query=Eight%27In+Flour+and+Coffee+Boumhal" target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
+        </div>
+        <div class="contact-card reveal">
+          <svg class="contact-icon" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="26" fill="currentColor"/><path d="M32 16v16l10 7" fill="none" stroke="#EAFBF4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h3>Horaires</h3>
+          <p>Tous les jours<br />7h00 – 00h00</p>
+        </div>
+        <div class="contact-card reveal">
+          <svg class="contact-icon" viewBox="0 0 64 64" aria-hidden="true"><path fill="currentColor" d="M12 24h36v16c0 10-8 16-18 16S12 50 12 40Zm36 4c10 0 10 18-1 17l.5-5c5.5 0 5.5-7 .5-7Z"/><rect x="8" y="56" width="44" height="4" rx="2" fill="currentColor"/><path d="M22 6c-4 4 4 7 0 12M30 4c-4 5 4 8 0 13M38 6c-4 4 4 7 0 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+          <h3>Nos cafés</h3>
+          <p>Partenaires<br />illy &amp; Alta Caffè</p>
+        </div>
+        <div class="contact-card reveal">
+          <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor"/></svg>
+          <h3>Instagram</h3>
+          <a class="contact-link" href="https://www.instagram.com/eightincoffee/" target="_blank" rel="noopener">@eightincoffee</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-strokes" aria-hidden="true"></div>
+    <a href="#top" class="footer-logo" aria-label="Retour en haut">
+      <span class="footer-logo-word">Eight’in</span>
+      <span class="footer-logo-tag">Flour<br />&amp; Coffee</span>
+    </a>
+    <p>Boumhal — Banlieue Sud, Tunisie · Tous les jours, 7h – minuit</p>
+    <a class="footer-insta" href="https://www.instagram.com/eightincoffee/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor"/></svg>
+      @eightincoffee
+    </a>
+    <p class="footer-copy">© <span id="year">2026</span> Eight’In Flour &amp; Coffee. Tous droits réservés.</p>
+  </footer>
+
+  <!-- COMMANDE : bulle + panneau -->
+  <button class="cart-bubble" id="cart-bubble" type="button" aria-controls="cart-panel" aria-expanded="false" hidden>
+    <svg viewBox="0 0 64 64" aria-hidden="true"><path fill="currentColor" d="M14 22h36l-3 36q-.2 2-3 2H20q-2.8 0-3-2Z"/><path d="M24 26v-8c0-8 16-8 16 0v8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+    <span class="sr-only">Ma commande :</span>
+    <span class="cart-count" id="cart-count" aria-live="polite">0</span>
+  </button>
+
+  <aside class="cart-panel" id="cart-panel" aria-label="Ma commande" hidden>
+    <div class="cart-header">
+      <h3>Ma commande</h3>
+      <button class="icon-btn" id="cart-close" type="button" aria-label="Fermer">✕</button>
+    </div>
+    <div class="cart-list" id="cart-list"></div>
+    <div class="cart-footer">
+      <span class="cart-footer-label">Total</span>
+      <span class="cart-total" id="cart-total">0 DT</span>
+    </div>
+    <div class="cart-actions">
+      <button class="btn btn-navy" id="cart-checkout" type="button">Commander à la caisse</button>
+      <button class="link-btn" id="cart-clear" type="button">Vider la commande</button>
+    </div>
+  </aside>
+
+  <!-- TICKET À MONTRER À LA CAISSE -->
+  <dialog class="ticket" id="ticket" aria-labelledby="ticket-title">
+    <div class="ticket-paper">
+      <div class="ticket-head">
+        <span class="ticket-logo">Eight’in</span>
+        <p class="ticket-sign" id="ticket-title"><span aria-hidden="true">↓</span> Commande à la caisse <span aria-hidden="true">↓</span></p>
+        <p class="ticket-time" id="ticket-time"></p>
+      </div>
+      <ul class="ticket-list" id="ticket-list"></ul>
+      <div class="ticket-total">
+        <span>Total</span>
+        <span id="ticket-total"></span>
+      </div>
+      <p class="ticket-note">Présentez cet écran à la caisse — le paiement se fait au comptoir.</p>
+      <div class="ticket-actions">
+        <button class="btn btn-navy" id="ticket-close" type="button">Fermer</button>
+        <button class="link-btn" id="ticket-new" type="button">Nouvelle commande</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="assets/js/menu-data.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
