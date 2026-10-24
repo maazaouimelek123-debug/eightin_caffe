@@ -26,11 +26,15 @@ assets/js/menu-data.js  Carte de secours + textes des onglets + source du menu d
 assets/js/main.js       Rendu du menu, recherche, langue FR/EN, panier, ticket « commande à la caisse »
 assets/js/admin.js      Logique de la page admin
 assets/js/icons.js      Icônes des catégories (SVG)
+squelette/README.md     Squelette du site avec placeholders (menu + admin)
 supabase/               Schéma de la base, menu de départ et notice de mise en place (supabase/README.md)
 assets/fonts/           Polices auto-hébergées (woff2)
 assets/img/             Logo SVG, motifs SVG, favicons, image de partage
 vercel.json             En-têtes de sécurité (CSP stricte) pour un déploiement Vercel
 ```
+
+Squelette complet du site (page menu, page admin, données, base, styles) avec des placeholders `{{…}}` :
+[`squelette/README.md`](squelette/README.md).
 
 ## Page admin (au quotidien)
 
