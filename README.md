@@ -1,7 +1,7 @@
 # Eight’In Flour & Coffee — site web
 
 Site vitrine du café **Eight’In Flour & Coffee** (Boumhal, banlieue sud de Tunis).
-Site statique en HTML/CSS/JS, sans framework, sans build et sans backend.
+Site statique en HTML/CSS/JS, sans framework ni build. Les articles et les prix viennent d'une base **Supabase**, modifiable depuis la **page admin** ; si la base ne répond pas, le site affiche une carte de secours intégrée.
 
 Une seule page : nav fixe (recherche dans le menu + bouton FR/EN), hero plein écran, sélection, menu par onglets (Boissons, Sweet & Brunch, Savory) en cartes accordéon, panier, footer avec les infos pratiques (adresse, horaires, cafés partenaires, Instagram).
 L'identité visuelle (couleurs, typographies, motif « coups de pinceau ») est celle de l'Instagram [@eightincoffee](https://www.instagram.com/eightincoffee/) et de l'enseigne en boutique.
@@ -17,18 +17,37 @@ python3 -m http.server 8000
 
 ```
 index.html              Page unique (sections : hero, sélection, menu, footer/contact)
+admin.html              Page admin : articles et prix (non liée depuis le site, non indexée)
 assets/css/style.css    Styles + palette (variables CSS dans :root)
-assets/js/menu-data.js  ← LE fichier à modifier pour les prix et les articles
+assets/css/admin.css    Styles de la page admin
+assets/js/config.js     ← URL et clé publique du projet Supabase
+assets/js/api.js        Seul fichier qui parle à la base (lecture du menu, connexion, écritures admin)
+assets/js/menu-data.js  Carte de secours + textes des onglets + source du menu de départ
 assets/js/main.js       Rendu du menu, recherche, langue FR/EN, panier, ticket « commande à la caisse »
+assets/js/admin.js      Logique de la page admin
 assets/js/icons.js      Icônes des catégories (SVG)
+supabase/               Schéma de la base, menu de départ et notice de mise en place (supabase/README.md)
 assets/fonts/           Polices auto-hébergées (woff2)
 assets/img/             Logo SVG, motifs SVG, favicons, image de partage
 vercel.json             En-têtes de sécurité (CSP stricte) pour un déploiement Vercel
 ```
 
-## Modifier le menu
+## Page admin (au quotidien)
 
-Tout se fait dans `assets/js/menu-data.js` :
+Adresse : **https://eightincaffe.vercel.app/admin.html** (à mettre en favori ; elle n'est liée nulle part sur le site).
+
+- Connexion avec un compte créé dans Supabase et déclaré dans `admin_users` (voir `supabase/README.md`).
+- Mêmes onglets que le site. Pour chaque article : nom FR, nom EN, prix → **Enregistrer** (ou Entrée).
+- **Affiché / Masqué** (article épuisé) et **★ À découvrir** s'appliquent immédiatement.
+- Ajout d'un article en bas de chaque catégorie ; suppression avec confirmation.
+- Les changements apparaissent sur le site au prochain chargement de page, sans redéploiement.
+- Les droits sont vérifiés par la base elle-même (Row Level Security) : un compte non admin ne peut rien modifier, même en contournant la page.
+
+Tant que `assets/js/config.js` est vide, le site utilise la carte de secours et la page admin affiche « Base non configurée ».
+
+## Carte de secours (`menu-data.js`)
+
+Utilisée quand la base n'est pas configurée ou ne répond pas, et pour générer le menu de départ (`supabase/seed.sql`). Elle ne suit pas automatiquement les modifications faites dans l'admin.
 
 - **Changer un prix** : modifier `price`.
 - **Ajouter un article** : ajouter `{ id: 'mon-id', name: 'Nom', price: 12 }` dans la bonne catégorie (l'`id` doit être unique dans la catégorie). Option : `desc` pour une précision sous le nom, `tag` pour une pastille.
@@ -57,7 +76,7 @@ La barre de recherche (en haut à gauche, icône loupe sur mobile) cherche dans 
 | Bleu ciel | `#C9E9F5` | Posts « Find us here », coups de pinceau |
 | Menthe | `#EAFBF4` | Fond de l'avatar et des stories à la une |
 
-**Logo** : `assets/img/logo-eightin.svg`, vectorisé depuis le post Instagram « Find us here ». Il est intégré en SVG dans `index.html` (symbole `#eightin-logo`, classe `.logo-mark`) pour rester net à toutes les tailles ; sa couleur suit `color`. Après une modification du fichier, recopier son tracé dans ce symbole, avec la même mention « FLOUR & COFFEE » empilée que sur l'avatar Instagram.
+**Logo** : `assets/img/logo-eightin.svg`, vectorisé depuis le post Instagram « Find us here ». Il est intégré en SVG dans `index.html` (symbole `#eightin-logo`, classe `.logo-mark`) pour rester net à toutes les tailles ; sa couleur suit `color`. Après une modification du fichier, recopier son tracé dans ce symbole. Dans l'accueil, la mention « FLOUR & COFFEE » est empilée sous « in », comme sur l'avatar Instagram.
 
 | Typo | Usage | Pourquoi |
 |---|---|---|

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#1B3A57" />
+  <title>Admin — Eight’In Flour &amp; Coffee</title>
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/admin.css" />
+</head>
+<body class="admin">
+
+  <!-- CONNEXION -->
+  <main class="adm-center" id="view-login" hidden>
+    <form class="adm-card adm-login-card" id="login-form" novalidate>
+      <img class="adm-logo" src="assets/img/logo-eightin.svg" alt="Eight’in" width="180" height="82" />
+      <h1>Espace admin</h1>
+      <p class="adm-muted">Gestion des articles et des prix affichés sur le site.</p>
+      <label class="adm-field">E-mail
+        <input class="adm-input" type="email" id="login-email" autocomplete="username" required />
+      </label>
+      <label class="adm-field">Mot de passe
+        <input class="adm-input" type="password" id="login-password" autocomplete="current-password" required />
+      </label>
+      <button class="btn btn-navy" type="submit" id="login-submit">Se connecter</button>
+      <p class="adm-error" id="login-error" role="alert"></p>
+    </form>
+  </main>
+
+  <!-- BASE NON CONFIGURÉE -->
+  <main class="adm-center" id="view-config" hidden>
+    <div class="adm-card adm-login-card">
+      <img class="adm-logo" src="assets/img/logo-eightin.svg" alt="Eight’in" width="180" height="82" />
+      <h1>Base non configurée</h1>
+      <p class="adm-muted">
+        Le site n’est pas encore relié à la base du menu. Renseignez l’URL du projet Supabase et sa clé
+        publique dans <code>assets/js/config.js</code>, puis redéployez le site.
+      </p>
+      <a class="btn btn-navy" href="./">Retour au site</a>
+    </div>
+  </main>
+
+  <!-- GESTION DU MENU -->
+  <div id="view-admin" hidden>
+    <header class="adm-header">
+      <div class="adm-brand">
+        <img src="assets/img/logo-eightin.svg" alt="Eight’in" width="88" height="40" />
+        <span class="adm-pill">Admin</span>
+      </div>
+      <div class="adm-user">
+        <span class="adm-email" id="adm-email"></span>
+        <a class="adm-link" href="./" target="_blank" rel="noopener">Voir le site ↗</a>
+        <button class="adm-btn-ghost" type="button" id="logout">Déconnexion</button>
+      </div>
+    </header>
+
+    <main class="adm-main">
+      <div class="adm-toolbar">
+        <div class="menu-tabs adm-tabs" id="adm-tabs" role="tablist" aria-label="Rubriques du menu"></div>
+        <input class="adm-input adm-filter" type="search" id="adm-filter" placeholder="Filtrer les articles…" aria-label="Filtrer les articles" />
+      </div>
+      <p class="adm-help">
+        Modifiez un nom ou un prix, puis cliquez sur <strong>Enregistrer</strong> (ou touche Entrée).
+        <strong>Affiché / Masqué</strong> et <strong>★ À découvrir</strong> s’appliquent tout de suite.
+        Les changements apparaissent sur le site au prochain chargement de la page.
+      </p>
+      <div id="adm-categories"></div>
+    </main>
+  </div>
+
+  <div class="adm-toast" id="adm-toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="assets/js/config.js" defer></script>
+  <script src="assets/js/api.js" defer></script>
+  <script src="assets/js/menu-data.js" defer></script>
+  <script src="assets/js/admin.js" defer></script>
+</body>
+</html>

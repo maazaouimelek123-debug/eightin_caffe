@@ -1,0 +1,184 @@
+/* ==========================================================================
+   Eight'In Flour & Coffee — page admin (complète style.css : polices, couleurs, boutons)
+   ========================================================================== */
+.admin { background: var(--mint); min-height: 100vh; }
+/* L'attribut hidden doit toujours gagner sur les display des composants (vues, boutons). */
+.admin [hidden] { display: none !important; }
+.admin code { font-size: 0.85em; background: var(--sky-soft); padding: 0.1rem 0.35rem; border-radius: 6px; }
+
+/* Connexion / configuration */
+.adm-center { min-height: 100vh; display: grid; place-items: center; padding: 1.5rem 1rem; }
+.adm-card {
+  width: min(420px, 100%);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+  padding: 2.2rem 1.8rem;
+}
+.adm-login-card { display: flex; flex-direction: column; gap: 1rem; text-align: center; }
+.adm-logo { width: 170px; height: auto; margin: 0 auto 0.3rem; }
+.adm-login-card h1 { font-family: var(--font-script); font-weight: 400; font-size: 2.4rem; line-height: 1.1; color: var(--navy); }
+.adm-muted { color: var(--ink-soft); font-size: 0.9rem; line-height: 1.6; }
+.adm-error { color: #B42318; font-size: 0.88rem; min-height: 1.2em; }
+
+.adm-field {
+  display: flex; flex-direction: column; gap: 0.35rem;
+  text-align: left;
+  font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.adm-input {
+  width: 100%;
+  font: inherit; font-size: 1rem; letter-spacing: normal; text-transform: none;
+  color: var(--navy);
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  padding: 0.65rem 0.8rem 0.5rem;
+  transition: border-color 0.15s, box-shadow 0.15s, opacity 0.15s;
+}
+.adm-input:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(140, 203, 227, 0.45); }
+.adm-input::placeholder { color: #9AB0C0; }
+
+/* En-tête */
+.adm-header {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+.adm-brand { display: flex; align-items: center; gap: 0.7rem; }
+.adm-brand img { height: 36px; width: auto; }
+.adm-pill {
+  background: var(--navy); color: var(--mint);
+  font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 0.35rem 0.7rem 0.22rem; border-radius: 999px;
+}
+.adm-user { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 0.6rem 1rem; font-size: 0.85rem; color: var(--ink-soft); }
+.adm-link { color: var(--navy); font-weight: 600; }
+.adm-btn-ghost, .adm-text-btn, .adm-delete {
+  font: inherit; cursor: pointer; background: none;
+}
+.adm-btn-ghost {
+  border: 1.5px solid var(--navy); color: var(--navy);
+  border-radius: 999px; padding: 0.5rem 1rem 0.38rem;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.adm-btn-ghost:hover { background: var(--navy); color: var(--mint); }
+
+/* Corps */
+.adm-main { max-width: 1060px; margin: 0 auto; padding: 1.6rem 1rem 6rem; }
+.adm-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.8rem; margin-bottom: 1rem; }
+.adm-tabs { margin: 0; max-width: none; justify-content: flex-start; flex-wrap: wrap; }
+.adm-filter { flex: 0 1 280px; min-width: 200px; }
+.adm-help { font-size: 0.86rem; line-height: 1.6; color: var(--ink-soft); margin-bottom: 1.4rem; }
+.adm-help strong { color: var(--navy); }
+
+.adm-cat {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 1.1rem 1.3rem 1.3rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 4px 16px rgba(18, 41, 63, 0.06);
+}
+.adm-cat-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.4rem; }
+.adm-cat-head h2 { font-family: var(--font-script); font-weight: 400; font-size: 2rem; line-height: 1.15; color: var(--navy); }
+.adm-cat-head h2 small { font-family: var(--font-hand); font-size: 1.1rem; color: var(--ink-soft); margin-left: 0.5rem; }
+.adm-count { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; }
+
+/* Ligne d'article : nom FR | nom EN | prix | affiché | à découvrir | actions */
+.adm-row, .adm-add {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.3fr) 104px auto auto auto;
+  grid-template-areas: "fr en price visible featured actions";
+  align-items: end;
+  gap: 0.7rem;
+  padding: 0.85rem 0.5rem;
+  border-top: 1px solid var(--line);
+}
+.f-name_fr { grid-area: fr; }
+.f-name_en { grid-area: en; }
+.f-price { grid-area: price; }
+.f-visible { grid-area: visible; }
+.f-featured { grid-area: featured; }
+.f-actions { grid-area: actions; }
+.adm-row.is-hidden .adm-input { opacity: 0.5; }
+.adm-row.is-dirty { background: var(--sky-soft); border-radius: 14px; border-top-color: transparent; }
+
+.adm-toggle {
+  min-height: 44px; min-width: 96px;
+  border-radius: 999px;
+  border: 1.5px solid var(--navy);
+  background: var(--navy); color: var(--mint);
+  font: inherit; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.4rem 0.9rem 0.25rem;
+  cursor: pointer;
+}
+.adm-toggle[aria-pressed="false"] { background: var(--white); color: var(--ink-soft); border-color: #B9CBD6; }
+.adm-star {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1.5px solid #B9CBD6; background: var(--white); color: var(--ink-soft);
+  font-size: 1.25rem; line-height: 1; cursor: pointer;
+}
+.adm-star[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #FFD27A; }
+.adm-actions { display: flex; align-items: center; gap: 0.5rem; min-height: 44px; }
+.adm-actions .btn, .adm-add-btn { width: auto; padding: 0.75rem 1.2rem 0.6rem; font-size: 0.74rem; }
+.adm-text-btn { border: 0; color: var(--ink-soft); text-decoration: underline; text-underline-offset: 3px; font-size: 0.82rem; padding: 0.4rem; }
+.adm-delete {
+  border: 1.5px solid transparent; border-radius: 999px;
+  color: #B42318; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.55rem 0.7rem 0.4rem;
+}
+.adm-delete:hover { border-color: #F1B8B2; background: #FFF4F2; }
+button:disabled { opacity: 0.5; cursor: progress; }
+
+/* Ajout d'un article */
+.adm-add {
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.3fr) 104px auto auto;
+  grid-template-areas: "fr en price group add";
+  border-top: 1.5px dashed var(--line);
+  margin-top: 0.4rem;
+}
+.adm-add .f-group { grid-area: group; }
+.adm-add .adm-add-btn { grid-area: add; min-height: 44px; }
+
+/* Message de confirmation */
+.adm-toast {
+  position: fixed; left: 50%; bottom: 1.2rem; z-index: 300;
+  transform: translateX(-50%);
+  max-width: calc(100vw - 2rem);
+  background: var(--navy); color: var(--mint);
+  padding: 0.8rem 1.3rem 0.65rem;
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(18, 41, 63, 0.3);
+  font-weight: 600; font-size: 0.9rem; text-align: center;
+}
+.adm-toast.is-error { background: #B42318; color: var(--white); border-radius: 16px; }
+
+/* Téléphone : le personnel modifie souvent les prix depuis son mobile */
+@media (max-width: 720px) {
+  .adm-header { padding: 0.6rem 1rem; }
+  .adm-email { display: none; }
+  .adm-filter { flex: 1 1 100%; }
+  .adm-cat { padding: 0.9rem 0.8rem 1rem; }
+  .adm-row {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-areas:
+      "fr fr fr"
+      "en en en"
+      "price visible featured"
+      "actions actions actions";
+  }
+  .adm-actions { justify-content: flex-end; }
+  .adm-add {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "fr fr"
+      "en en"
+      "price add"
+      "group group";
+  }
+}

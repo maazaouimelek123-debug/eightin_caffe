@@ -5,7 +5,11 @@
 (() => {
   'use strict';
 
-  const { SITE, SECTIONS, MENU, FEATURED } = window.EIGHTIN;
+  const { SITE, SECTIONS } = window.EIGHTIN;
+  const API = window.EIGHTIN_API;
+  // Carte de secours (menu-data.js), remplacée par celle de la base dès que celle-ci répond.
+  let MENU = window.EIGHTIN.MENU;
+  let FEATURED = window.EIGHTIN.FEATURED;
   const ICONS = window.EIGHTIN_ICONS;
   const SVG_NS = 'http://www.w3.org/2000/svg';
   const STORE_KEY = 'eightin-commande-v1';
@@ -159,13 +163,8 @@
   const round3 = n => Math.round(n * 1000) / 1000;
   const fmt = p => (Number.isInteger(p) ? String(p) : p.toFixed(3)) + ' DT';
 
-  /* ---------- Index des articles : "categorie/article" → { item, cat } ---------- */
+  /* ---------- Index des articles : "categorie/article" → { item, cat } (rempli par indexMenu) ---------- */
   const ITEMS = new Map();
-  for (const cat of MENU) {
-    for (const g of cat.groups) {
-      for (const it of g.items) ITEMS.set(`${cat.id}/${it.id}`, { item: it, cat });
-    }
-  }
   const catLabel = cat => tr(cat.label || cat.name);
   const addLabel = (it, cat) => t('addItem', tr(it.name), catLabel(cat), fmt(it.price));
 
@@ -305,13 +304,24 @@
   const searchList = document.getElementById('search-list');
 
   // Recherche insensible aux accents et à la casse, dans les deux langues à la fois.
-  const norm = s => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const norm = s => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/œ/g, 'oe').replace(/æ/g, 'ae');
   const variants = v => (v && typeof v === 'object' ? [v.fr, v.en] : [v || '']);
-  const SEARCH_INDEX = [...ITEMS].map(([key, { item, cat }]) => ({
-    key,
-    names: variants(item.name).map(norm),
-    text: norm([item.name, item.desc, item.tag, cat.name, cat.label, cat.subtitle].flatMap(variants).join(' ')),
-  }));
+  let SEARCH_INDEX = [];
+
+  // (Re)construit l'index des articles et celui de la recherche à partir de MENU.
+  function indexMenu() {
+    ITEMS.clear();
+    for (const cat of MENU) {
+      for (const g of cat.groups) {
+        for (const it of g.items) ITEMS.set(`${cat.id}/${it.id}`, { item: it, cat });
+      }
+    }
+    SEARCH_INDEX = [...ITEMS].map(([key, { item, cat }]) => ({
+      key,
+      names: variants(item.name).map(norm),
+      text: norm([item.name, item.desc, item.tag, cat.name, cat.label, cat.subtitle].flatMap(variants).join(' ')),
+    }));
+  }
 
   function searchItems(query) {
     const terms = norm(query).split(/\s+/).filter(Boolean);
@@ -592,9 +602,23 @@
   syncLangSwitch();
   requestAnimationFrame(() => requestAnimationFrame(() => langSwitch.classList.remove('no-anim')));
   applyStatic();
-  loadCart();
-  renderAll();
   document.getElementById('maps-link').href = SITE.mapsUrl;
   document.getElementById('year').textContent = String(new Date().getFullYear());
-  setupReveal();
+
+  // La base (si configurée) fait foi ; si elle ne répond pas, la carte de secours reste affichée.
+  async function loadMenu() {
+    if (!API || !API.configured) return;
+    try {
+      ({ MENU, FEATURED } = await API.fetchMenu());
+    } catch (err) {
+      console.warn('Base du menu injoignable, carte de secours affichée :', err.message);
+    }
+  }
+
+  loadMenu().then(() => {
+    indexMenu();
+    loadCart();
+    renderAll();
+    setupReveal();
+  });
 })();
