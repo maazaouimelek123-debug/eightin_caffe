@@ -615,7 +615,14 @@
     }
   }
 
+  // Dans chaque catégorie (et chaque sous-groupe), du moins cher au plus cher ; à prix égal, l'ordre d'origine.
+  const byPrice = menu => menu.map(cat => ({
+    ...cat,
+    groups: cat.groups.map(g => ({ ...g, items: [...g.items].sort((a, b) => a.price - b.price) })),
+  }));
+
   loadMenu().then(() => {
+    MENU = byPrice(MENU);
     indexMenu();
     loadCart();
     renderAll();
