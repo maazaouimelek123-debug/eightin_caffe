@@ -110,7 +110,9 @@
     } catch (err) {
       error.textContent = err.status === 400 || err.status === 401
         ? 'E-mail ou mot de passe incorrect.'
-        : `Connexion impossible : ${err.message}`;
+        : err instanceof TypeError
+          ? 'Connexion impossible : la base ne répond pas (vérifiez la connexion internet).'
+          : `Connexion impossible : ${err.message}`;
     } finally {
       button.disabled = false;
       button.textContent = 'Se connecter';

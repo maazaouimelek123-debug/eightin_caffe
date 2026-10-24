@@ -10,6 +10,6 @@
  * (assets/js/menu-data.js) et la page admin indique que la base n'est pas configurée.
  */
 window.EIGHTIN_CONFIG = {
-  supabaseUrl: '',
-  supabaseKey: '',
+  supabaseUrl: 'https://jxkqyypwfzgjdoopwyew.supabase.co',
+  supabaseKey: 'sb_publishable_X3wH8uuGdwJvb_aDNURhvw_PyHYRnbi',
 };
