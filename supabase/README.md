@@ -7,7 +7,10 @@ Ce dossier contient tout ce qu’il faut pour créer la base dont ils ont besoin
 |---|---|
 | `schema.sql` | Tables, contraintes et règles d’accès (Row Level Security). Peut être relancé sans risque. |
 | `seed.sql` | La carte actuelle : 15 catégories, 71 articles, 6 mises en avant. Sans effet si des articles existent déjà. |
+| `check.sql` | Vérifie l’installation (règles d’accès, menu, compte admin). Ne modifie rien. |
 | `generate-seed.js` | Régénère `seed.sql` à partir de `assets/js/menu-data.js` : `node supabase/generate-seed.js > supabase/seed.sql` |
+
+Ces scripts se lancent **à la main** dans le SQL Editor. L’intégration GitHub de Supabase n’applique que les fichiers d’un dossier `supabase/migrations/`, qui n’existe pas ici : elle ne touche donc pas à la base.
 
 ## Mise en place (environ 10 minutes)
 
@@ -23,7 +26,8 @@ Ce dossier contient tout ce qu’il faut pour créer la base dont ils ont besoin
    Retirer un admin : `delete from public.admin_users where user_id = (select id from auth.users where email = '…');`
 6. **Project Settings → API / API Keys** : copier l’**URL du projet** et la **clé publique** (`sb_publishable_…` ou `anon`).
    ⚠️ Ne jamais transmettre ni mettre dans le site la clé **`service_role` / `secret`**.
-7. Envoyer l’URL et la clé publique à l’équipe site (elles vont dans `assets/js/config.js`).
+7. Mettre l’URL et la clé publique dans `assets/js/config.js` (déjà fait pour le projet actuel).
+8. **SQL Editor** → lancer `check.sql` : chaque ligne doit afficher `ok = true`. Une ligne `false` indique l’étape à reprendre.
 
 ## Contrat avec le site
 
@@ -55,7 +59,7 @@ Le site n’utilise que l’API REST et Supabase Auth, uniquement depuis `assets
 
 ## Vérification après installation (5 minutes)
 
-1. SQL Editor : `select tablename, rowsecurity from pg_tables where schemaname = 'public';` → `rowsecurity = true` pour `categories`, `items` et `admin_users`.
+1. SQL Editor : `check.sql` → toutes les lignes à `ok = true`.
 2. Une fois `config.js` rempli et le site redéployé : ouvrir le site, le menu s’affiche ; dans la console du navigateur, aucun message « carte de secours ».
 3. Ouvrir `/admin.html`, se connecter avec le compte créé à l’étape 4.
 4. Changer un prix → Enregistrer → recharger le site : le nouveau prix s’affiche. Remettre l’ancien.
